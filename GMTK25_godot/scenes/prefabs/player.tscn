@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://hgxrqo8ht2hs"]
+
+[ext_resource type="Script" uid="uid://321bp12o32b6" path="res://scenes/prefabs/player.gd" id="1_06qtw"]
+[ext_resource type="Texture2D" uid="uid://76cgge43oxiq" path="res://assets/temp_testing/stick man guy 16x16.png" id="2_tou0u"]
+
+[node name="Player" type="Node2D"]
+script = ExtResource("1_06qtw")
+
+[node name="PlayerSprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_tou0u")
+
+[node name="Camera2D" type="Camera2D" parent="PlayerSprite"]
+
+[node name="TileCheckerRaycast" type="RayCast2D" parent="."]
+target_position = Vector2(16, 0)
+collision_mask = 2

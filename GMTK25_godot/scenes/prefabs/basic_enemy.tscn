@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://8vdab81hfvav"]
+
+[ext_resource type="Texture2D" uid="uid://bdvc5senfau6h" path="res://assets/temp_testing/evil stick man guy 16x16.png" id="1_23aqp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qnmws"]
+size = Vector2(16, 16)
+
+[node name="BasicEnemy" type="RigidBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_qnmws")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_23aqp")
