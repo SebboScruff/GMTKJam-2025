@@ -17,7 +17,6 @@ var is_next_tile_occupied:bool = false
 
 #region Player Metrics
 var courage_remaining:int = 15
-var vision_range = 1
 var tiles_visited:Array = []
 #endregion
 
