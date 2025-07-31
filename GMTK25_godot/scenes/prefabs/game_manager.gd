@@ -1,7 +1,7 @@
 class_name GameManager
 extends Node
 
-var can_player_act
+var can_player_act:bool
 # Add array of enemy objects!
 
 # Called when the node enters the scene tree for the first time.
@@ -19,4 +19,4 @@ func resolve_world() -> void:
 	
 	# Cycle through all enemies and progress their behaviours one at a time
 	
-	can_player_act - true
+	can_player_act = true
