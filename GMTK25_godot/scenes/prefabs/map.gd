@@ -2,6 +2,7 @@ class_name FogManager
 extends Node2D
 
 @onready var full_reveal_layer: TileMapLayer = $FullRevealLayer
+@onready var quarter_reveal_layer: TileMapLayer = $QuarterRevealLayer
 @onready var half_reveal_layer: TileMapLayer = $HalfRevealLayer
 @onready var fog_layer: TileMapLayer = $FogLayer
 
