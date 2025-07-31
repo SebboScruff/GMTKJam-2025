@@ -9,13 +9,22 @@
 [node name="Map" parent="." node_paths=PackedStringArray("player") instance=ExtResource("1_fiamg")]
 player = NodePath("../Player")
 
+[node name="ThreeQuartLayer" parent="Map" index="1"]
+visible = false
+
+[node name="HalfRevealLayer" parent="Map" index="2"]
+visible = false
+
+[node name="FogLayer" parent="Map" index="3"]
+visible = false
+
 [node name="Player" parent="." node_paths=PackedStringArray("map_manager", "tilemap") instance=ExtResource("2_f0ah4")]
 position = Vector2(40, 8)
 map_manager = NodePath("../Map")
 tilemap = NodePath("../Map/FullRevealLayer")
 
 [node name="BasicEnemy" parent="." instance=ExtResource("4_5k4b6")]
-position = Vector2(-104, -24)
+position = Vector2(-24, -24)
 courage_requirement = 15
 
 [editable path="Map"]

@@ -116,6 +116,8 @@ func try_move(direction:Vector2):
 			move_to_tile(current_tile, target_tile)
 			adjust_courage(-1)
 		else: ## tile is unvisited and there's no courage left
+			print("You aren't brave enough to continue")
+			##TODO Play an animation here to show that he's too scared to go on
 			return
 	else: # Next tile has already been visited
 		move_to_tile(current_tile, target_tile)

@@ -7,7 +7,7 @@
 texture = ExtResource("1_jpy3g")
 separation = Vector2i(1, 1)
 0:0/0 = 0
-0:0/0/modulate = Color(0.314316, 0.314316, 0.314316, 1)
+0:0/0/modulate = Color(0.313726, 0.313726, 0.313726, 1)
 1:0/0 = 0
 1:0/0/modulate = Color(0.314316, 0.314316, 0.314316, 1)
 2:0/0 = 0
