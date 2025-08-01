@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dq3muqnpi8tay"]
+
+[ext_resource type="Texture2D" uid="uid://bf1aula6y2e44" path="res://assets/temp_testing/lil tree.png" id="1_88d1b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1b3ag"]
+size = Vector2(16, 16)
+
+[node name="Obstacle" type="Area2D"]
+z_index = 2
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_1b3ag")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_88d1b")

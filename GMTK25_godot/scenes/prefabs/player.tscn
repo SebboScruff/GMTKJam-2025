@@ -1,6 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://hgxrqo8ht2hs"]
+[gd_scene load_steps=6 format=3 uid="uid://hgxrqo8ht2hs"]
 
 [ext_resource type="Script" uid="uid://321bp12o32b6" path="res://scenes/prefabs/player.gd" id="1_06qtw"]
+[ext_resource type="PackedScene" uid="uid://dhk2eboehfeqx" path="res://scenes/prefabs/courage_wisp.tscn" id="2_8cdkg"]
+[ext_resource type="Script" uid="uid://k23ed2bdgwr0" path="res://scenes/prefabs/wisp_manager.gd" id="2_56dyf"]
 [ext_resource type="Texture2D" uid="uid://76cgge43oxiq" path="res://assets/temp_testing/stick man guy 16x16.png" id="2_tou0u"]
 [ext_resource type="Texture2D" uid="uid://df4i7mckmvvxw" path="res://assets/temp_testing/crosshair 16x16.png" id="3_n0leu"]
 
@@ -9,6 +11,22 @@ z_index = 1
 script = ExtResource("1_06qtw")
 
 [node name="CourageWisps" type="Node2D" parent="."]
+script = ExtResource("2_56dyf")
+
+[node name="CourageWisp" parent="CourageWisps" instance=ExtResource("2_8cdkg")]
+position = Vector2(0.0705334, -14.4588)
+
+[node name="CourageWisp2" parent="CourageWisps" instance=ExtResource("2_8cdkg")]
+position = Vector2(-4.45835, -13.6648)
+
+[node name="CourageWisp3" parent="CourageWisps" instance=ExtResource("2_8cdkg")]
+position = Vector2(4.45237, -13.6648)
+
+[node name="CourageWisp4" parent="CourageWisps" instance=ExtResource("2_8cdkg")]
+position = Vector2(-7.78149, -11.3121)
+
+[node name="CourageWisp5" parent="CourageWisps" instance=ExtResource("2_8cdkg")]
+position = Vector2(7.92256, -11.1945)
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_tou0u")
@@ -18,7 +36,7 @@ texture = ExtResource("2_tou0u")
 [node name="TileCheckerRaycast" type="RayCast2D" parent="."]
 z_index = -1
 target_position = Vector2(0, -16)
-collision_mask = 2
+collision_mask = 22
 collide_with_areas = true
 
 [node name="DebugTileFinder" type="Sprite2D" parent="."]
