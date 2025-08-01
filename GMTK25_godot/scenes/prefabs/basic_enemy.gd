@@ -32,22 +32,33 @@ func try_find_player(_current_player_tile:Vector2i) -> void:
 		if(player.get_current_tile() == t):
 			# Round player courage up to get the number of wisps that they have. 
 			var player_wisp_count = ceil(player.courage_remaining)
-			print("Player is getting attacked by %s"%name)
+			print("Player is getting attacked by %s."%name)
+			print("Player has %d Wisps, Enemy has  %d Fear"%[player_wisp_count, fear_level])
 			# Check based on this enemy's Fear level?
 			# Then deal some amount of damage to the player
 			# and Fog up the map
 			## TODO First up play the attack animation
-			if(player.player_wisp_count == 0):
-				## Player dies, this run is over.
-				pass
-			elif(player.player_wisp_count > fear_level):
+			if(player_wisp_count == 0):
+				player.on_die()
+			
+			elif(player_wisp_count > fear_level):
 				## Player takes no damage and does not black out.
-				pass
-			elif (player.player_wisp_count == fear_level):
-				## player loses 1 Courage, but does not black out.
-				pass
-			elif(player.player_wisp_count < fear_level):
+				## TODO need some way of conveying the fact that the attack didnt work
+				print("Player has high courage, this attack didn't affect them")
+				return
+			
+			elif (player_wisp_count == fear_level):
+				## player loses the remainder of their smallest 1 Wisp, but does not black out.
+				## Effectively truncates the decimal off the courage remaining stat.
+				print("Player has equal courage. Losing 1 Wisp and not blacking out.")
+				player.remove_wisps(1)
+				return
+			
+			elif(player_wisp_count < fear_level):
 				## Player loses 1 Courage AND blacks out.
+				print("Player is scared. Losing 1 Wisp and blacking out.")
+				player.remove_wisps(1)
+				player.on_blackout()
 				pass
 			return # Player has been located, don't need to search remaining neighbour tiles.
 

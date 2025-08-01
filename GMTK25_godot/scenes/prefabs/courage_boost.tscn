@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://b0rrkpwk2vh10"]
+
+[ext_resource type="Texture2D" uid="uid://b63aban17n3x6" path="res://assets/temp_testing/courage boost.png" id="1_hirgk"]
+[ext_resource type="Script" uid="uid://bkqroi178ckve" path="res://scenes/prefabs/courage_boost.gd" id="1_i7evw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i7evw"]
+size = Vector2(16, 16)
+
+[node name="CourageBoost" type="Area2D"]
+collision_layer = 16
+script = ExtResource("1_i7evw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_i7evw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_hirgk")
