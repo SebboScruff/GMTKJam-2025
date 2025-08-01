@@ -27,6 +27,9 @@ signal on_player_turn_ended(player_tile:Vector2)
 func _ready() -> void:
 	if(gm == null):
 		print("No Game Manager Assigned to Player! This may cause lots of issues.")
+	if(map_manager == null):
+		print("No Map Manager assigned to Player!")
+	tilemap = map_manager.full_reveal_layer
 	if(tilemap == null):
 		print("No Tilemap Assigned to player! Movement will not work.")
 	
