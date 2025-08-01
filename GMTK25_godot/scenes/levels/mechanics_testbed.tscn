@@ -14,11 +14,10 @@ position = Vector2(40, 8)
 map_manager = NodePath("../Map")
 tilemap = NodePath("../Map/FullRevealLayer")
 
-[node name="BasicEnemy" parent="." node_paths=PackedStringArray("player", "map_manager", "grid") instance=ExtResource("4_5k4b6")]
+[node name="BasicEnemy" parent="." node_paths=PackedStringArray("player", "map_manager", "tilemap") instance=ExtResource("4_5k4b6")]
 position = Vector2(-24, -24)
-courage_requirement = 15
 player = NodePath("../Player")
 map_manager = NodePath("../Map")
-grid = NodePath("../Map/FogLayer")
+tilemap = NodePath("../Map/FullRevealLayer")
 
 [editable path="Map"]

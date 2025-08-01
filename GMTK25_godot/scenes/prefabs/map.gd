@@ -26,7 +26,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if(Input.is_action_just_pressed("debug_activate")):
-		reset_fog()
+		reset_fog_completely()
 	pass
 	
 ## This is called whenever the player has finished moving to a tile,
@@ -81,7 +81,7 @@ func update_fog(_current_player_tile:Vector2i) -> void:
 	quarter_reveal_layer.notify_runtime_tile_data_update()
 	
 
-func reset_fog() -> void:
+func reset_fog_completely() -> void:
 	print("Fog Manager: Resetting Fog...")
 	# 1: Reset tile opacity on every tilemap layer
 	# reset_opacities() is a function that goes through every entry in the dictionary of 

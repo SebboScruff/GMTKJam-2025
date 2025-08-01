@@ -13,10 +13,11 @@ const TILE_SIZE := 16
 @onready var player_sprite: Sprite2D = $PlayerSprite
 @onready var next_tile_check: RayCast2D = $TileCheckerRaycast
 var is_next_tile_occupied:bool = false
+@export var courage_wisp_visuals:Array = []
 #endregion
 
 #region Player Metrics
-var courage_remaining:int = 15
+var courage_remaining:float = 0.0
 var tiles_visited:Array = []
 #endregion
 
@@ -35,6 +36,8 @@ func _ready() -> void:
 	
 	# Emit this signal once at the start of the game to make sure the Fog updates immediately
 	#on_player_turn_ended.emit(tilemap.local_to_map(global_position)) 
+	courage_wisp_visuals = $CourageWisps.get_children()
+	adjust_courage(3.0)
 	tiles_visited.append(get_current_tile())
 	print("Player started on Tile (%d,%d)"%[get_current_tile().x, get_current_tile().y])
 
@@ -96,8 +99,14 @@ func try_move(direction:Vector2):
 	## If next occupied by enemy, do a combat check
 	if(next_tile_check.is_colliding()):
 		if(next_tile_check.get_collider() is Enemy):
-			resolve_combat(next_tile_check.get_collider() as Enemy, current_tile, target_tile)
-			return # Whether or not we move is determined by the combat function. Break out of try_move.
+			var target_enemy = next_tile_check.get_collider() as Enemy
+			if(courage_remaining < target_enemy.fear_level):
+				## Player is too scared to attack. Attack command is ignored.
+				## TODO play the 'cowering' animation here if we have it.
+				return
+			else:
+				resolve_combat(target_enemy, current_tile, target_tile)
+				return # Whether or not we move is determined by the combat function. Break out of try_move.
 	
 	## Extract data out of the target tile, to see if it is walkable or not
 	var target_tile_data:TileData = tilemap.get_cell_tile_data(target_tile)
@@ -116,7 +125,7 @@ func try_move(direction:Vector2):
 	if(is_next_tile_unvisited):
 		if(courage_remaining > 0):
 			move_to_tile(current_tile, target_tile)
-			adjust_courage(-1)
+			adjust_courage(-0.2)
 		else: ## tile is unvisited and there's no courage left
 			print("You aren't brave enough to continue")
 			##TODO Play an animation here to show that he's too scared to go on
@@ -133,11 +142,11 @@ func resolve_combat(target_enemy:Enemy, _current_tile:Vector2, _target_tile:Vect
 	elif(courage_remaining == target_enemy.courage_requirement):
 		target_enemy.on_death()
 		move_to_tile(_current_tile, _target_tile)
-		adjust_courage(-1) ## Numbers subject to change
+		adjust_courage(-1.0) ## Numbers subject to change
 		return
 	elif(courage_remaining < target_enemy.courage_requirement):
 		## Probably want some kind of animation or infomatic to show that you lost
-		adjust_courage(-1) ## Numbers subject to change
+		adjust_courage(-1.0) ## Numbers subject to change
 		return
 	
 
@@ -149,10 +158,21 @@ func move_to_tile(current_tile:Vector2, target_tile:Vector2):
 	global_position = tilemap.map_to_local(target_tile)
 	player_sprite.global_position = tilemap.map_to_local(current_tile)
 
-func adjust_courage(_delta:int) -> void:
+func adjust_courage(_delta:float) -> void:
 	force_cancel_movement()
 	courage_remaining += _delta
-	print("Courage Updated: You have %d courage remaining"%courage_remaining)
+	print("Courage Updated: You have %f courage remaining"%courage_remaining)
+	## Update the Courage Visuals (Wisps)
+	var num_wisps = ceil(courage_remaining)
+	# hide all wisps
+	for w in courage_wisp_visuals:
+		w.set_visible(false)
+	# show the relevant wisps
+	for i in range(num_wisps):
+		courage_wisp_visuals[i].set_visible(true)
+	# scale down the last wisp
+	courage_wisp_visuals[num_wisps-1].scale = Vector2(0.3,0.3)*(courage_remaining - int(courage_remaining))
+	
 	if(courage_remaining <= 0):
 		print("Player has died")
 		## TODO Respawn behaviours
