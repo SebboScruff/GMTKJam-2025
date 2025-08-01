@@ -13,3 +13,4 @@ func reset_opacities() -> void:
 	for k in tile_alpha_values.keys():
 		tile_alpha_values[k] = 1.0
 	notify_runtime_tile_data_update()
+	#tile_alpha_values.clear()

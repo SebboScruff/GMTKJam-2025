@@ -162,3 +162,7 @@ func force_cancel_movement() -> void:
 	
 func get_current_tile() -> Vector2i:
 	return tilemap.local_to_map(global_position)
+	
+func on_map_fog_reset() -> void:
+	tiles_visited.clear()
+	tiles_visited.append(get_current_tile())
