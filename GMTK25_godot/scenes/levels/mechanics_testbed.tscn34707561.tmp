@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://bsk8e0tjs6oi2"]
+
+[ext_resource type="PackedScene" uid="uid://c6276oj5nbcx5" path="res://scenes/prefabs/map.tscn" id="1_fiamg"]
+[ext_resource type="PackedScene" uid="uid://hgxrqo8ht2hs" path="res://scenes/prefabs/player.tscn" id="2_f0ah4"]
+[ext_resource type="PackedScene" uid="uid://8vdab81hfvav" path="res://scenes/prefabs/basic_enemy.tscn" id="4_5k4b6"]
+
+[node name="MechanicsTestbed" type="Node2D"]
+
+[node name="Map" parent="." node_paths=PackedStringArray("player") instance=ExtResource("1_fiamg")]
+player = NodePath("../Player")
+
+[node name="Player" parent="." node_paths=PackedStringArray("map_manager", "tilemap") instance=ExtResource("2_f0ah4")]
+position = Vector2(40, 8)
+map_manager = NodePath("../Map")
+tilemap = NodePath("../Map/FullRevealLayer")
+
+[node name="BasicEnemy" parent="." instance=ExtResource("4_5k4b6")]
+position = Vector2(-24, -24)
+courage_requirement = 15
+
+[editable path="Map"]

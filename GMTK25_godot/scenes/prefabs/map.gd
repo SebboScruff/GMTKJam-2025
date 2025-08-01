@@ -1,10 +1,14 @@
 class_name FogManager
 extends Node2D
 
-@onready var full_reveal_layer: TileMapLayer = $FullRevealLayer
-@onready var quarter_reveal_layer: TileMapLayer = $QuarterRevealLayer
-@onready var half_reveal_layer: TileMapLayer = $HalfRevealLayer
-@onready var fog_layer: TileMapLayer = $FogLayer
+## These are the tiles that the player has already exactly stepped on
+@onready var full_reveal_layer: TileMapLayer = $FullRevealLayer 
+## These are directly adjacent to the player's visited tiles. Reveals Enemies.
+@onready var quarter_reveal_layer: FogMap = $QuarterRevealLayer
+## These are 2 spaces out from where the player has been. Reveals items/terrain, hides enemies
+@onready var half_reveal_layer: FogMap = $HalfRevealLayer
+## The whole map starts on this. Completely hides everything.
+@onready var fog_layer: FogMap = $FogLayer
 
 @export var player:Player
 
@@ -21,6 +25,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if(Input.is_action_just_pressed("debug_activate")):
+		reset_fog()
 	pass
 	
 ## This is called whenever the player has finished moving to a tile,
@@ -42,7 +48,7 @@ func update_fog(_current_player_tile:Vector2i) -> void:
 		fog_layer.set_cell(t, -1)
 		half_reveal_layer.set_cell(t, -1)
 	
-	# Outer Diamond needs to be cleared of Full Fog only, leaving Half
+	# Outer Diamond needs to be cleared of Full Fog only, leaving Half-Fog
 	var tiles_to_half = [
 		_current_player_tile + Vector2i(2,0),
 		_current_player_tile + Vector2i(-2,0),
@@ -58,4 +64,7 @@ func update_fog(_current_player_tile:Vector2i) -> void:
 		fog_layer.set_cell(t, -1)
 	
 
-func reset_fog
+func reset_fog() -> void:
+	#1: Reset tile opacity on every tilemap layer
+	#2: Run Update Fog on the player's current location
+	pass
