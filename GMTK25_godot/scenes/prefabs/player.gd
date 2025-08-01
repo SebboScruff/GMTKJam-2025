@@ -119,6 +119,7 @@ func try_move(direction:Vector2):
 		elif(next_tile_check.get_collider() is CourageBoost):
 			var target_pickup = next_tile_check.get_collider() as CourageBoost
 			target_pickup.on_pickup(self)
+		## Also need to check if it's a Totem space or an Exit Space.
 		else: # The only other thing it could possible be colliding with is an obstacle
 			return
 	
