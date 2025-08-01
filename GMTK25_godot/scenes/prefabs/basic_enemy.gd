@@ -72,5 +72,4 @@ func get_current_tile() -> Vector2i:
 	return tilemap.local_to_map(self.global_position)
 
 func on_death() -> void:
-	print("Great Enemy Felled")
 	queue_free()
