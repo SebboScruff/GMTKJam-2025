@@ -31,7 +31,8 @@ func _on_player_anim_attack(dir: int) -> void:
 
 
 func _on_player_anim_died() -> void:
-	play("die")
+	if(animation != "die"):
+		play("die")
 
 
 func _on_player_anim_is_too_scared() -> void:

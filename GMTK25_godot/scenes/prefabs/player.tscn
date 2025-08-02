@@ -314,6 +314,15 @@ animations = [{
 }, {
 "duration": 2.0,
 "texture": SubResource("AtlasTexture_0cg1t")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_0cg1t")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_0cg1t")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_0cg1t")
 }],
 "loop": false,
 "name": &"die",
@@ -363,7 +372,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"too_scared",
-"speed": 3.0
+"speed": 7.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -442,6 +451,8 @@ script = ExtResource("1_06qtw")
 position = Vector2(0.00782394, -0.0352759)
 sprite_frames = SubResource("SpriteFrames_ajr3h")
 animation = &"too_scared"
+frame = 7
+frame_progress = 1.0
 script = ExtResource("5_6v0jn")
 
 [node name="Camera2D" type="Camera2D" parent="PlayerAnimSprite"]
