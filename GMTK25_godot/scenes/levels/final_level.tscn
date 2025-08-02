@@ -1,3 +1,20 @@
-[gd_scene format=3 uid="uid://blssh5cmsi1qk"]
+[gd_scene load_steps=3 format=3 uid="uid://blssh5cmsi1qk"]
+
+[ext_resource type="TileSet" uid="uid://dwh345fy5jv18" path="res://assets/Grass_tileset_allfoglayers.tres" id="1_lekuc"]
+[ext_resource type="TileSet" uid="uid://cww51own2at7u" path="res://assets/Fog_Tileset.tres" id="3_vmyuh"]
 
 [node name="FinalLevel" type="Node2D"]
+
+[node name="Map" type="Node2D" parent="."]
+
+[node name="FullRevealLayer" type="TileMapLayer" parent="Map"]
+tile_set = ExtResource("1_lekuc")
+
+[node name="QuarterFogLayer" type="TileMapLayer" parent="Map"]
+tile_set = ExtResource("1_lekuc")
+
+[node name="HalfFogLayer" type="TileMapLayer" parent="Map"]
+tile_set = ExtResource("1_lekuc")
+
+[node name="FogLayer" type="TileMapLayer" parent="Map"]
+tile_set = ExtResource("3_vmyuh")
