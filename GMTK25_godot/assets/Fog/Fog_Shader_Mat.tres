@@ -1,6 +1,11 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://v476miigjpjl"]
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://v476miigjpjl"]
 
-[ext_resource type="Shader" uid="uid://snmeq64fioh5" path="res://assets/Fog/Fog_WorldSpace_Shader.gdshader" id="1_reajc"]
+[ext_resource type="Shader" uid="uid://snmeq64fioh5" path="res://assets/Fog/Fog_WorldSpace_Shader.gdshader" id="1_lvs8p"]
+[ext_resource type="Texture2D" uid="uid://bua76kd5sr1yb" path="res://assets/Fog/Fog_WorldSpace.png" id="2_lvs8p"]
 
 [resource]
-shader = ExtResource("1_reajc")
+shader = ExtResource("1_lvs8p")
+shader_parameter/fog_image = ExtResource("2_lvs8p")
+shader_parameter/speed = 0.01
+shader_parameter/scale = 0.0001
+shader_parameter/fog_color = Color(0.286275, 0.4, 0.541176, 1)
