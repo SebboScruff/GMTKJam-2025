@@ -25,9 +25,9 @@ void fragment() {
     float fog_r = texture(fog_image, fract(base_uv + offset_r)).r;
     float fog_g = texture(fog_image, fract(base_uv + offset_g)).g;
     float fog_b = texture(fog_image, fract(base_uv + offset_b)).b;
-	
-	
-	//float clinear = 0.2126 * fog_r + 
+
+
+	//float clinear = 0.2126 * fog_r +
 
     //vec3 newcolor = vec3(fog_r, fog_g, fog_b);
 	 vec3 newcolor_r = vec3(fog_r, fog_r, fog_r);
