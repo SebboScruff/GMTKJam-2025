@@ -11,13 +11,18 @@ const TILE_SIZE := 16
 #endregion
 #region Internal Object References
 @onready var player_sprite: Sprite2D = $PlayerSprite
+@onready var player_anim_sprite: AnimatedSprite2D = $PlayerAnimSprite
 @onready var next_tile_check: RayCast2D = $TileCheckerRaycast
 var is_next_tile_occupied:bool = false
-@onready var wisp_manager: WispManager = $CourageWisps
+@onready var wisp_manager: WispManager = %CourageWisps
+#endregion
 
+#region Animation Signals
+signal anim_is_moving(dir:int)
 #endregion
 
 #region Player Metrics
+var movement_speed := 0.5
 var courage_remaining:float = 0.0
 var recent_blackout:=false
 # The tiles discovered during an expedition. Tiles in this array can be lost for good.
@@ -61,15 +66,19 @@ func _process(delta: float) -> void:
 		if(Input.is_action_pressed("move_up")):
 			next_tile_check.target_position = Vector2(0, -TILE_SIZE)
 			try_move(Vector2.UP)
+			anim_is_moving.emit(0)
 		elif (Input.is_action_pressed("move_down")):
 			next_tile_check.target_position = Vector2(0, TILE_SIZE)
 			try_move(Vector2.DOWN)
+			anim_is_moving.emit(1)
 		elif(Input.is_action_pressed("move_left")):
 			next_tile_check.target_position = Vector2(-TILE_SIZE,0)
 			try_move(Vector2.LEFT)
+			anim_is_moving.emit(2)
 		elif(Input.is_action_pressed("move_right")):
 			next_tile_check.target_position = Vector2(TILE_SIZE,0)
 			try_move(Vector2.RIGHT)
+			anim_is_moving.emit(3)
 	else:
 		if(Input.is_action_just_released("move_up") ||Input.is_action_just_released("move_down") ||
 		Input.is_action_just_released("move_left") ||Input.is_action_just_released("move_right")):
@@ -79,7 +88,7 @@ func _physics_process(delta: float) -> void:
 	if(is_moving == false):
 		return
 		
-	if(global_position == player_sprite.global_position):
+	if(global_position == player_anim_sprite.global_position):
 		is_moving = false
 		if(!tiles_visited.has(get_current_tile())):
 			tiles_visited.append(get_current_tile())
@@ -90,7 +99,7 @@ func _physics_process(delta: float) -> void:
 		
 		return
 	
-	player_sprite.global_position = player_sprite.global_position.move_toward(global_position, 1)
+	player_anim_sprite.global_position = player_anim_sprite.global_position.move_toward(global_position, movement_speed)
 	
 	
 func try_move(direction:Vector2):
@@ -182,7 +191,7 @@ func move_to_tile(current_tile:Vector2, target_tile:Vector2):
 	# Hacky way to animate movement
 	## check _physics_process for sprite movement details
 	global_position = tilemap.map_to_local(target_tile)
-	player_sprite.global_position = tilemap.map_to_local(current_tile)
+	player_anim_sprite.global_position = tilemap.map_to_local(current_tile)
 
 func adjust_courage(_delta:float) -> void:
 	courage_remaining += _delta

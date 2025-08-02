@@ -1,7 +1,7 @@
 class_name WispManager
 extends Node2D
 
-@onready var player: Player = $".."
+@onready var player: Player = $"../.."
 var wisps = []
 
 func _ready() -> void:
