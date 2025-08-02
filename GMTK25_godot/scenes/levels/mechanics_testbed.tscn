@@ -19,7 +19,7 @@ tilemap = NodePath("../Map/FullRevealLayer")
 pickup_respawner = NodePath("../ItemRespawner")
 
 [node name="BasicEnemy" parent="." node_paths=PackedStringArray("player", "map_manager", "tilemap") instance=ExtResource("4_5k4b6")]
-position = Vector2(56, 56)
+position = Vector2(24, 40)
 fear_level = 3
 player = NodePath("../Player")
 map_manager = NodePath("../Map")
