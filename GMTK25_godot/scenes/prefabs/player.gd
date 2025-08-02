@@ -20,9 +20,13 @@ var is_next_tile_occupied:bool = false
 #endregion
 
 #region Animation Signals
+var anim_direction:int
+
 signal anim_is_moving(dir:int)
 signal anim_return_to_idle
-signal anim_is_scared
+signal anim_is_too_scared
+signal anim_died
+signal anim_attack(dir:int)
 #endregion
 
 #region Player Metrics
@@ -63,28 +67,34 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	#if(gm.can_player_act == false):
 		#return
-	if(is_moving):
-		return
+	#if(is_moving):
+		#return
 	
 	if(Input.is_action_just_pressed("debug_activate")):
 		on_die()
+		
+		
 	if(!lost_combat):
 		if(Input.is_action_pressed("move_up")):
+			anim_direction = 0
+			if(is_moving):return
 			next_tile_check.target_position = Vector2(0, -TILE_SIZE)
 			try_move(Vector2.UP)
-			anim_is_moving.emit(0)
 		elif (Input.is_action_pressed("move_down")):
+			anim_direction = 1
+			if(is_moving):return
 			next_tile_check.target_position = Vector2(0, TILE_SIZE)
 			try_move(Vector2.DOWN)
-			anim_is_moving.emit(1)
 		elif(Input.is_action_pressed("move_left")):
+			anim_direction = 2
+			if(is_moving):return
 			next_tile_check.target_position = Vector2(-TILE_SIZE,0)
 			try_move(Vector2.LEFT)
-			anim_is_moving.emit(2)
 		elif(Input.is_action_pressed("move_right")):
+			anim_direction = 3
+			if(is_moving):return
 			next_tile_check.target_position = Vector2(TILE_SIZE,0)
 			try_move(Vector2.RIGHT)
-			anim_is_moving.emit(3)
 	else:
 		if(Input.is_action_just_released("move_up") ||Input.is_action_just_released("move_down") ||
 		Input.is_action_just_released("move_left") ||Input.is_action_just_released("move_right")):
@@ -153,6 +163,7 @@ func try_move(direction:Vector2):
 		return
 	if(target_tile_data.get_custom_data("SafeZone") == true):
 		on_return_to_village()
+		anim_is_moving.emit(anim_direction)
 		move_to_tile(current_tile, target_tile)
 		return
 		
@@ -166,13 +177,16 @@ func try_move(direction:Vector2):
 	
 	if(is_next_tile_unvisited):
 		if(courage_remaining > 0):
+			anim_is_moving.emit(anim_direction)
 			move_to_tile(current_tile, target_tile)
 			adjust_courage(-0.2)
 		else: ## tile is unvisited and there's no courage left
 			print("You aren't brave enough to continue")
 			##TODO Play an animation here to show that he's too scared to go on
+			anim_is_too_scared.emit()
 			return
 	else: # Next tile has already been visited
+		anim_is_moving.emit(anim_direction)
 		move_to_tile(current_tile, target_tile)
 
 func resolve_combat(target_enemy:Enemy, _current_tile:Vector2, _target_tile:Vector2) -> void:
@@ -180,13 +194,17 @@ func resolve_combat(target_enemy:Enemy, _current_tile:Vector2, _target_tile:Vect
 	var wisp_count = ceil(courage_remaining)
 	if(wisp_count == 0):
 		print("Player is too scared to fight!")
+		## Play Scared and Shake Head animation
+		lost_combat = true
 	elif(wisp_count > target_enemy.fear_level):
 		print("Player is very brave. Enemy killed without any courage loss")
+		anim_attack.emit(anim_direction)
 		target_enemy.on_death()
 		move_to_tile(_current_tile, _target_tile)
 		return
 	elif(wisp_count == target_enemy.fear_level):
 		print("Player is kinda brave. Enemy killed with courage loss")
+		anim_attack.emit(anim_direction)
 		target_enemy.on_death()
 		move_to_tile(_current_tile, _target_tile)
 		remove_wisps(1)
@@ -248,6 +266,7 @@ func on_blackout() -> void:
 func on_die() -> void:
 	print("Player died!")
 	# Play and wait for Death Animation if we have one
+	anim_died.emit()
 	
 	## PLAYER RESET
 	# remove all visited tiles fromm the player's list
@@ -270,6 +289,7 @@ func on_die() -> void:
 	#6: remove fog around tiles visited
 	for t in tiles_visited:
 		map_manager.update_fog(t)
+	#anim_return_to_idle.emit()
 
 func on_return_to_village() -> void:
 	print("Player returned to village!")
