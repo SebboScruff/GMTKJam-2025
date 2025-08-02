@@ -1,14 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://b0rrkpwk2vh10"]
+[gd_scene load_steps=6 format=3 uid="uid://b0rrkpwk2vh10"]
 
 [ext_resource type="Script" uid="uid://bkqroi178ckve" path="res://scenes/prefabs/courage_boost.gd" id="1_i7evw"]
 [ext_resource type="Texture2D" uid="uid://nx18rmv4cca1" path="res://assets/decoration_sprites/Items.png" id="2_i7evw"]
+[ext_resource type="PackedScene" uid="uid://dhk2eboehfeqx" path="res://scenes/prefabs/courage_wisp.tscn" id="3_mm7oy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i7evw"]
 size = Vector2(512, 512)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mm7oy"]
 atlas = ExtResource("2_i7evw")
-region = Rect2(0, 0, 512, 512)
+region = Rect2(512, 0, 512, 512)
 
 [node name="CourageBoost" type="Area2D"]
 z_index = 2
@@ -17,6 +18,11 @@ script = ExtResource("1_i7evw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_i7evw")
+debug_color = Color(0, 0.64462, 0.277253, 0.42)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = SubResource("AtlasTexture_mm7oy")
+
+[node name="CourageWisp" parent="." instance=ExtResource("3_mm7oy")]
+position = Vector2(0, -132)
+scale = Vector2(0.685366, 0.841864)
