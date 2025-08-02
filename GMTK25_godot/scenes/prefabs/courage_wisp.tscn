@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dhk2eboehfeqx"]
+
+[ext_resource type="Texture2D" uid="uid://bo7qk3dulmuoq" path="res://assets/temp_testing/lil wispy.png" id="1_ydvqx"]
+
+[node name="CourageWisp" type="Sprite2D"]
+z_index = 50
+position = Vector2(0, 4.76837e-07)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_ydvqx")

@@ -1,24 +1,40 @@
-[gd_scene load_steps=4 format=3 uid="uid://bsk8e0tjs6oi2"]
+[gd_scene load_steps=7 format=3 uid="uid://bsk8e0tjs6oi2"]
 
 [ext_resource type="PackedScene" uid="uid://c6276oj5nbcx5" path="res://scenes/prefabs/map.tscn" id="1_fiamg"]
 [ext_resource type="PackedScene" uid="uid://hgxrqo8ht2hs" path="res://scenes/prefabs/player.tscn" id="2_f0ah4"]
 [ext_resource type="PackedScene" uid="uid://8vdab81hfvav" path="res://scenes/prefabs/basic_enemy.tscn" id="4_5k4b6"]
+[ext_resource type="PackedScene" uid="uid://b0rrkpwk2vh10" path="res://scenes/prefabs/courage_boost.tscn" id="4_dlwxx"]
+[ext_resource type="PackedScene" uid="uid://b0qlqe4ndvth4" path="res://scenes/prefabs/item_respawner.tscn" id="4_xpsi1"]
+[ext_resource type="PackedScene" uid="uid://dq3muqnpi8tay" path="res://scenes/prefabs/obstacle.tscn" id="5_dlwxx"]
 
 [node name="MechanicsTestbed" type="Node2D"]
 
 [node name="Map" parent="." node_paths=PackedStringArray("player") instance=ExtResource("1_fiamg")]
 player = NodePath("../Player")
 
-[node name="Player" parent="." node_paths=PackedStringArray("map_manager", "tilemap") instance=ExtResource("2_f0ah4")]
-position = Vector2(40, 8)
+[node name="Player" parent="." node_paths=PackedStringArray("map_manager", "tilemap", "pickup_respawner") instance=ExtResource("2_f0ah4")]
+position = Vector2(120, 56)
+map_manager = NodePath("../Map")
+tilemap = NodePath("../Map/FullRevealLayer")
+pickup_respawner = NodePath("../ItemRespawner")
+
+[node name="BasicEnemy" parent="." node_paths=PackedStringArray("player", "map_manager", "tilemap") instance=ExtResource("4_5k4b6")]
+position = Vector2(56, 56)
+fear_level = 3
+player = NodePath("../Player")
 map_manager = NodePath("../Map")
 tilemap = NodePath("../Map/FullRevealLayer")
 
-[node name="BasicEnemy" parent="." node_paths=PackedStringArray("player", "map_manager", "grid") instance=ExtResource("4_5k4b6")]
-position = Vector2(-24, -24)
-courage_requirement = 15
-player = NodePath("../Player")
-map_manager = NodePath("../Map")
-grid = NodePath("../Map/FogLayer")
+[node name="ItemRespawner" parent="." instance=ExtResource("4_xpsi1")]
+
+[node name="CourageBoost" parent="ItemRespawner" instance=ExtResource("4_dlwxx")]
+position = Vector2(104, 40)
+courage_increase = 1
+
+[node name="Obstacle" parent="." instance=ExtResource("5_dlwxx")]
+position = Vector2(88, 40)
+
+[node name="Obstacle2" parent="." instance=ExtResource("5_dlwxx")]
+position = Vector2(72, 40)
 
 [editable path="Map"]
