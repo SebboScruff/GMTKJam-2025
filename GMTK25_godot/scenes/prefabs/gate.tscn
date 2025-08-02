@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://dsq80vnieamnl"]
+
+[ext_resource type="Script" uid="uid://owwc7dtcvwav" path="res://scenes/prefabs/gate.gd" id="1_xpc2g"]
+[ext_resource type="Texture2D" uid="uid://l8v64j2x8p8l" path="res://assets/decoration_sprites/Gate.png" id="1_y1kwg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xpc2g"]
+size = Vector2(1024, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5r4pt"]
+atlas = ExtResource("1_y1kwg")
+region = Rect2(0, 512, 1024, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y15yf"]
+atlas = ExtResource("1_y1kwg")
+region = Rect2(0, 1024, 1024, 512)
+
+[node name="Gate" type="Area2D"]
+collision_layer = 4
+script = ExtResource("1_xpc2g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_xpc2g")
+
+[node name="ClosedSprite" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_5r4pt")
+
+[node name="OpenSprite" type="Sprite2D" parent="."]
+visible = false
+texture = SubResource("AtlasTexture_y15yf")

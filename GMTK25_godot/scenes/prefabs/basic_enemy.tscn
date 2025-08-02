@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://8vdab81hfvav"]
+[gd_scene load_steps=18 format=3 uid="uid://8vdab81hfvav"]
 
 [ext_resource type="Texture2D" uid="uid://bdvc5senfau6h" path="res://assets/temp_testing/evil stick man guy 16x16.png" id="1_23aqp"]
 [ext_resource type="Script" uid="uid://c3we0e5aevr0m" path="res://scenes/prefabs/basic_enemy.gd" id="1_qnmws"]
 [ext_resource type="Texture2D" uid="uid://c81hp5463kr66" path="res://assets/character_sprites/Shadow_Monster_Animations.png" id="3_vxteb"]
+[ext_resource type="Texture2D" uid="uid://yv3e3c2i6asm" path="res://assets/character_sprites/Skull.png" id="4_vx4am"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qnmws"]
 size = Vector2(512, 512)
@@ -69,6 +70,35 @@ animations = [{
 "speed": 2.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_mtgd2"]
+atlas = ExtResource("4_vx4am")
+region = Rect2(0, 0, 131, 104)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blo6v"]
+atlas = ExtResource("4_vx4am")
+region = Rect2(131, 0, 131, 104)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kjb67"]
+atlas = ExtResource("4_vx4am")
+region = Rect2(262, 0, 131, 104)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xj8rs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mtgd2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_blo6v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kjb67")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
 [node name="BasicEnemy" type="Area2D"]
 z_index = 1
 collision_layer = 2
@@ -88,3 +118,24 @@ animation = &"Attack"
 autoplay = "idle"
 frame = 4
 frame_progress = 1.0
+
+[node name="SkullEmoji" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -265)
+scale = Vector2(1.84724, 1.84443)
+sprite_frames = SubResource("SpriteFrames_xj8rs")
+autoplay = "default"
+frame_progress = 0.64901
+
+[node name="SkullEmoji2" type="AnimatedSprite2D" parent="."]
+position = Vector2(174, -211)
+scale = Vector2(1.84724, 1.84443)
+sprite_frames = SubResource("SpriteFrames_xj8rs")
+autoplay = "default"
+frame_progress = 0.204678
+
+[node name="SkullEmoji3" type="AnimatedSprite2D" parent="."]
+position = Vector2(-142, -189)
+scale = Vector2(1.84724, 1.84443)
+sprite_frames = SubResource("SpriteFrames_xj8rs")
+autoplay = "default"
+frame_progress = 0.824851

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://blssh5cmsi1qk"]
+[gd_scene load_steps=18 format=4 uid="uid://blssh5cmsi1qk"]
 
 [ext_resource type="Script" uid="uid://bcfsa5i01f578" path="res://scenes/prefabs/map.gd" id="1_61xx6"]
 [ext_resource type="TileSet" uid="uid://dwh345fy5jv18" path="res://assets/Grass_tileset_allfoglayers.tres" id="1_lekuc"]
@@ -10,6 +10,14 @@
 [ext_resource type="PackedScene" uid="uid://d2mna074yu4se" path="res://scenes/prefabs/totem.tscn" id="7_ifx55"]
 [ext_resource type="PackedScene" uid="uid://8vdab81hfvav" path="res://scenes/prefabs/basic_enemy.tscn" id="7_jwk10"]
 [ext_resource type="Texture2D" uid="uid://kligf8xubqw5" path="res://assets/decoration_sprites/Environmental_Assets_01.png" id="9_3xiv5"]
+[ext_resource type="PackedScene" uid="uid://b0rrkpwk2vh10" path="res://scenes/prefabs/courage_boost.tscn" id="9_rqhej"]
+[ext_resource type="Texture2D" uid="uid://nx18rmv4cca1" path="res://assets/decoration_sprites/Items.png" id="10_21cr8"]
+[ext_resource type="PackedScene" uid="uid://dhk2eboehfeqx" path="res://scenes/prefabs/courage_wisp.tscn" id="10_ve0j8"]
+[ext_resource type="PackedScene" uid="uid://dsq80vnieamnl" path="res://scenes/prefabs/gate.tscn" id="13_odfv6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_odfv6"]
+atlas = ExtResource("10_21cr8")
+region = Rect2(0, 0, 512, 512)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rqhej"]
 atlas = ExtResource("9_3xiv5")
@@ -27,7 +35,7 @@ player = NodePath("../Player")
 
 [node name="FullRevealLayer" type="TileMapLayer" parent="Map"]
 unique_name_in_owner = true
-tile_map_data = PackedByteArray("AAD/////BgAAAAAAAAD//wAABgAAAAEAAAAAAP//BgABAAAAAAAAAAAABgABAAEAAAD+////AQAAAAAAAAD9////AQAAAAEAAAD8////AAADAAMAAAD7////AAAAAAIAAAD6////AQABAAAAAAD5////AQAAAAAAAAD4////AAAAAAEAAAABAP//AAABAAIAAAADAP//AAADAAIAAAACAP//AAACAAIAAAAEAP//AQABAAAAAAAFAP//AAAAAAEAAAAGAP//AQABAAEAAAAHAP//AAAAAAEAAAAAAP7/AQABAAEAAAAAAP3/AQAAAAAAAAAAAPz/AQAAAAAAAAAAAPv/AQABAAAAAAAAAPr/AAADAAMAAAAAAPn/AQAAAAAAAAAAAPj/AAADAAMAAAD///j/AAABAAMAAAD+//j/AAADAAMAAAD9//j/AAACAAAAAAD8//j/AAACAAAAAAD7//j/AAABAAAAAAD6//j/AAABAAMAAAD5//j/AQABAAAAAAD4//j/AQABAAAAAAD4//n/AAABAAAAAAD4//r/AAABAAEAAAD4//v/AAABAAEAAAD4//z/AAABAAIAAAD4//3/AAAAAAEAAAD4//7/AAABAAIAAAD//wEAAQAAAAAAAAD//wIAAAABAAMAAAD//wMAAQABAAEAAAD//wQAAAABAAMAAAD//wUAAAAAAAEAAAD//wYAAAABAAIAAAD//wcAAQAAAAAAAAD+/wcAAQAAAAEAAAD9/wcAAQAAAAAAAAD8/wcAAQAAAAAAAAD7/wcAAAADAAMAAAD6/wcAAAADAAMAAAD5/wcAAAABAAMAAAD4/wcAAQABAAEAAAD4/wAAAAAAAAIAAAD4/wEAAQABAAEAAAD4/wIAAAABAAMAAAD4/wMAAAAAAAEAAAD4/wQAAAABAAEAAAD4/wUAAAABAAIAAAD4/wYAAQABAAEAAAAAAAcAAAAAAAIAAAABAAcAAQAAAAEAAAACAAcAAQAAAAEAAAADAAcAAAAAAAIAAAAEAAcAAQABAAEAAAAFAAcAAQAAAAAAAAAGAAcAAAABAAIAAAAHAAcAAAADAAIAAAAHAAYAAAADAAEAAAAHAAUAAAADAAAAAAAHAAQAAQAAAAAAAAAHAAMAAAADAAMAAAAHAAIAAQAAAAEAAAAHAAEAAQABAAAAAAAHAAAAAAADAAMAAAAHAP7/AAAAAAEAAAAHAP3/AAAAAAEAAAAHAPz/AAADAAMAAAAHAPv/AQAAAAAAAAAHAPr/AAAAAAIAAAAHAPn/AAAAAAEAAAAHAPj/AAADAAMAAAAGAPj/AAACAAMAAAAFAPj/AAABAAMAAAAEAPj/AAACAAMAAAADAPj/AAABAAMAAAACAPj/AQABAAAAAAABAPj/AQABAAAAAAD3/wgABwAAAAAAAAD3/wcABwAAAAAAAAD3/wYABwAAAAAAAAD3/wUABwAAAAAAAAD3/wQABwAAAAAAAAD3/wMABwAAAAAAAAD3/wIABwAAAAAAAAD3/wEABwAAAAAAAAD3/wAABwAAAAAAAAD3////BwAAAAAAAAD3//7/BwAAAAAAAAD3//3/BwAAAAAAAAD3//z/BwAAAAAAAAD3//v/BwAAAAAAAAD3//r/BwAAAAAAAAD3//n/BwAAAAAAAAD3//j/BwAAAAAAAAD3//f/BwAAAAAAAAD4//f/BwAAAAAAAAD5//f/BwAAAAAAAAD6//f/BwAAAAAAAAD7//f/BwAAAAAAAAD8//f/BwAAAAAAAAD9//f/BwAAAAAAAAD+//f/BwAAAAAAAAABAPf/BwAAAAAAAAACAPf/BwAAAAAAAAADAPf/BwAAAAAAAAAEAPf/BwAAAAAAAAAFAPf/BwAAAAAAAAAGAPf/BwAAAAAAAAAHAPf/BwAAAAAAAAAIAPf/BwAAAAAAAAAIAPj/BwAAAAAAAAAIAPn/BwAAAAAAAAAIAPr/BwAAAAAAAAAIAPv/BwAAAAAAAAAIAPz/BwAAAAAAAAAIAP3/BwAAAAAAAAAIAP7/BwAAAAAAAAAIAP//BwAAAAAAAAAIAAAABwAAAAAAAAAIAAEABwAAAAAAAAAIAAIABwAAAAAAAAAIAAMABwAAAAAAAAAIAAQABwAAAAAAAAAIAAUABwAAAAAAAAAIAAYABwAAAAAAAAAIAAcABwAAAAAAAAAIAAgABwAAAAAAAAAHAAgABwAAAAAAAAAGAAgABwAAAAAAAAAFAAgABwAAAAAAAAAEAAgABwAAAAAAAAADAAgABwAAAAAAAAACAAgABwAAAAAAAAABAAgABwAAAAAAAAAAAAgABwAAAAAAAAD//wgABwAAAAAAAAD+/wgABwAAAAAAAAD9/wgABwAAAAAAAAD8/wgABwAAAAAAAAD7/wgABwAAAAAAAAD6/wgABwAAAAAAAAD5/wgABwAAAAAAAAD4/wgABwAAAAAAAAD+/wAAAAAAAAMAAAD9/wAAAAADAAAAAAD8/wAAAAABAAEAAAD7/wAAAQAAAAAAAAD6/wAAAAAAAAAAAAD5/wAAAQAAAAAAAAD5/wEAAQAAAAAAAAD9/wEAAAADAAEAAAD+/wEAAQABAAAAAAD8/wEAAAABAAEAAAD7/wEAAAACAAMAAAD6/wEAAAABAAAAAAD+/wYAAQABAAEAAAD+/wUAAAABAAMAAAD+/wQAAQABAAAAAAD+/wMAAQABAAAAAAD+/wIAAQAAAAAAAAD9/wYAAQABAAAAAAD9/wUAAQAAAAAAAAD9/wQAAQABAAAAAAD9/wMAAQABAAEAAAD9/wIAAAADAAIAAAD8/wYAAQABAAAAAAD8/wUAAAADAAMAAAD8/wQAAAAAAAIAAAD8/wMAAAADAAIAAAD8/wIAAAABAAIAAAD7/wYAAQAAAAEAAAD7/wUAAAACAAMAAAD7/wQAAQABAAAAAAD7/wMAAAABAAMAAAD7/wIAAQAAAAAAAAD6/wYAAAAAAAEAAAD6/wUAAAADAAMAAAD6/wQAAQABAAAAAAD6/wMAAQABAAEAAAD6/wIAAAADAAMAAAD5/wYAAQABAAEAAAD5/wUAAAACAAIAAAD5/wQAAAADAAAAAAD5/wMAAQAAAAAAAAD5/wIAAAACAAMAAAAGAAYAAAABAAEAAAAGAAUAAAACAAAAAAAGAAQAAQAAAAAAAAAGAAMAAAACAAMAAAAGAAIAAQAAAAEAAAAGAAEAAAADAAIAAAAFAAYAAQAAAAEAAAAFAAUAAAAAAAIAAAAFAAQAAAAAAAAAAAAFAAMAAAAAAAMAAAAFAAIAAAAAAAIAAAAFAAEAAAACAAIAAAAEAAYAAAADAAMAAAAEAAUAAQAAAAAAAAAEAAQAAQABAAAAAAAEAAMAAQAAAAEAAAAEAAIAAQABAAAAAAAEAAEAAAABAAIAAAADAAYAAAABAAMAAAADAAUAAAAAAAIAAAADAAQAAAAAAAAAAAADAAMAAQAAAAAAAAADAAIAAQABAAAAAAADAAEAAQAAAAAAAAACAAYAAQABAAEAAAACAAUAAQAAAAAAAAACAAQAAQAAAAAAAAACAAMAAAADAAMAAAACAAIAAQABAAEAAAACAAEAAQABAAEAAAABAAYAAQABAAAAAAABAAUAAAAAAAIAAAABAAQAAAADAAIAAAABAAMAAAACAAAAAAABAAIAAQAAAAEAAAABAAEAAAAAAAMAAAAAAAYAAAAAAAAAAAAAAAUAAQABAAEAAAAAAAQAAAABAAIAAAAAAAMAAAABAAEAAAAAAAIAAAADAAMAAAAAAAEAAAAAAAAAAAAGAAAAAAADAAAAAAAGAP7/AQAAAAEAAAAGAP3/AQAAAAEAAAAGAPz/AAABAAMAAAAGAPv/AQAAAAEAAAAGAPr/AQABAAEAAAAGAPn/AQAAAAAAAAAFAAAAAAACAAAAAAAFAP7/AAADAAMAAAAFAP3/AAAAAAAAAAAFAPz/AQAAAAEAAAAFAPv/AAADAAMAAAAFAPr/AQABAAAAAAAFAPn/AAAAAAIAAAAEAAAAAAABAAAAAAAEAP7/AAACAAMAAAAEAP3/AQABAAAAAAAEAPz/AAAAAAIAAAAEAPv/AAABAAIAAAAEAPr/AAADAAMAAAAEAPn/AQABAAEAAAADAAAAAQAAAAEAAAADAP7/AAADAAAAAAADAP3/AQAAAAAAAAADAPz/AAABAAMAAAADAPv/AQABAAEAAAADAPr/AAACAAMAAAADAPn/AQABAAEAAAACAAAAAQABAAEAAAACAP7/AAACAAEAAAACAP3/AAAAAAAAAAACAPz/AQABAAEAAAACAPv/AQAAAAEAAAACAPr/AAABAAIAAAACAPn/AAAAAAAAAAABAAAAAQABAAEAAAABAP7/AAABAAAAAAABAP3/AQABAAEAAAABAPz/AQABAAEAAAABAPv/AQABAAEAAAABAPr/AAAAAAMAAAABAPn/AQAAAAEAAAD///7/AQABAAAAAAD///3/AQABAAEAAAD///z/AQAAAAAAAAD///v/AQAAAAAAAAD///r/AAACAAMAAAD///n/AQABAAAAAAD+//7/AQABAAAAAAD+//3/AAAAAAIAAAD+//z/AAADAAMAAAD+//v/AQABAAEAAAD+//r/AAABAAMAAAD+//n/AQABAAAAAAD9//7/AQAAAAAAAAD9//3/AQAAAAEAAAD9//z/AAACAAMAAAD9//v/AAAAAAAAAAD9//r/AQAAAAAAAAD9//n/AAADAAIAAAD8//7/AQABAAAAAAD8//3/AQAAAAEAAAD8//z/AAABAAMAAAD8//v/AQAAAAAAAAD8//r/AAAAAAIAAAD8//n/AAACAAIAAAD7//7/AAAAAAAAAAD7//3/AQABAAAAAAD7//z/AAAAAAMAAAD7//v/AQAAAAAAAAD7//r/AQAAAAAAAAD7//n/AAABAAIAAAD6//7/AQABAAAAAAD6//3/AQABAAEAAAD6//z/AQABAAAAAAD6//v/AQAAAAEAAAD6//r/AQAAAAEAAAD6//n/AQABAAAAAAD5//7/AAADAAMAAAD5//3/AQAAAAEAAAD5//z/AAADAAIAAAD5//v/AAADAAEAAAD5//r/AAADAAEAAAD5//n/AAADAAAAAAA=")
+tile_map_data = PackedByteArray("AAD/////CAAAAAAAAAD//wAACAAAAAEAAAAAAP//CAABAAAAAAAAAAAACAABAAEAAAD+////AQAAAAAAAAD9////AQAAAAEAAAD8////AAADAAMAAAD7////AAAAAAIAAAD6////AQABAAAAAAD5////AQAAAAAAAAD4////AAAAAAEAAAABAP//AAABAAIAAAADAP//AAADAAIAAAACAP//AAACAAIAAAAEAP//AQABAAAAAAAFAP//AAAAAAEAAAAGAP//AQABAAEAAAAHAP//AAAAAAEAAAAAAP7/AQABAAEAAAAAAP3/AQAAAAAAAAAAAPz/AQAAAAAAAAAAAPv/AQABAAAAAAAAAPr/AAADAAMAAAAAAPn/AQAAAAAAAAAAAPj/AAADAAMAAAD///j/AAABAAMAAAD+//j/AAADAAMAAAD9//j/AAACAAAAAAD8//j/AAACAAAAAAD7//j/AAABAAAAAAD6//j/AAABAAMAAAD5//j/AQABAAAAAAD4//j/AQABAAAAAAD4//n/AAABAAAAAAD4//r/AAABAAEAAAD4//v/AAABAAEAAAD4//z/AAABAAIAAAD4//3/AAAAAAEAAAD4//7/AAABAAIAAAD//wEAAQAAAAAAAAD//wIAAAABAAMAAAD//wMAAQABAAEAAAD//wQAAAABAAMAAAD//wUAAAAAAAEAAAD//wYAAAABAAIAAAD//wcAAQAAAAAAAAD+/wcAAQAAAAEAAAD9/wcAAQAAAAAAAAD8/wcAAQAAAAAAAAD7/wcAAAADAAMAAAD6/wcAAAADAAMAAAD5/wcAAAABAAMAAAD4/wcAAQABAAEAAAD4/wAAAAAAAAIAAAD4/wEAAQABAAEAAAD4/wIAAAABAAMAAAD4/wMAAAAAAAEAAAD4/wQAAAABAAEAAAD4/wUAAAABAAIAAAD4/wYAAQABAAEAAAAAAAcAAAAAAAIAAAABAAcAAQAAAAEAAAACAAcAAQAAAAEAAAADAAcAAAAAAAIAAAAEAAcAAQABAAEAAAAFAAcAAQAAAAAAAAAGAAcAAAABAAIAAAAHAAcAAAADAAIAAAAHAAYAAAADAAEAAAAHAAUAAAADAAAAAAAHAAQAAQAAAAAAAAAHAAMAAQAAAAEAAAAHAAIAAQAAAAEAAAAHAAEAAQABAAAAAAAHAAAAAAADAAMAAAAHAP7/AAAAAAEAAAAHAP3/AAAAAAEAAAAHAPz/AAADAAMAAAAHAPv/AQAAAAAAAAAHAPr/AAAAAAIAAAAHAPn/AAAAAAEAAAAHAPj/AAADAAMAAAAGAPj/AAACAAMAAAAFAPj/AAABAAMAAAAEAPj/AAACAAMAAAADAPj/AAABAAMAAAACAPj/AQABAAAAAAABAPj/AQABAAAAAAD3/wgABwAAAAAAAAD3/wcABwAAAAAAAAD3/wYABwAAAAAAAAD3/wUABwAAAAAAAAD3/wQABwAAAAAAAAD3/wMABwAAAAAAAAD3/wIABwAAAAAAAAD3/wEABwAAAAAAAAD3/wAABwAAAAAAAAD3////BwAAAAAAAAD3//7/BwAAAAAAAAD3//3/BwAAAAAAAAD3//z/BwAAAAAAAAD3//v/BwAAAAAAAAD3//r/BwAAAAAAAAD3//n/BwAAAAAAAAD3//j/BwAAAAAAAAD3//f/BwAAAAAAAAD4//f/BwAAAAAAAAD5//f/BwAAAAAAAAD6//f/BwAAAAAAAAD7//f/BwAAAAAAAAD8//f/BwAAAAAAAAD9//f/BwAAAAAAAAD+//f/BwAAAAAAAAABAPf/BwAAAAAAAAACAPf/BwAAAAAAAAADAPf/BwAAAAAAAAAEAPf/BwAAAAAAAAAFAPf/BwAAAAAAAAAGAPf/BwAAAAAAAAAHAPf/BwAAAAAAAAAIAPf/BwAAAAAAAAAIAPj/BwAAAAAAAAAIAPn/BwAAAAAAAAAIAPr/BwAAAAAAAAAIAPv/BwAAAAAAAAAIAPz/BwAAAAAAAAAIAP3/BwAAAAAAAAAIAP7/BwAAAAAAAAAIAP//BwAAAAAAAAAIAAAABwAAAAAAAAAIAAEABwAAAAAAAAAIAAIABwAAAAAAAAAIAAMABwAAAAAAAAAIAAQABwAAAAAAAAAIAAUABwAAAAAAAAAIAAYABwAAAAAAAAAIAAcABwAAAAAAAAAIAAgABwAAAAAAAAAHAAgABwAAAAAAAAAGAAgABwAAAAAAAAAFAAgABwAAAAAAAAAEAAgABwAAAAAAAAADAAgABwAAAAAAAAACAAgABwAAAAAAAAABAAgABwAAAAAAAAAAAAgABwAAAAAAAAD//wgABwAAAAAAAAD+/wgABwAAAAAAAAD9/wgABwAAAAAAAAD8/wgABwAAAAAAAAD7/wgABwAAAAAAAAD6/wgABwAAAAAAAAD5/wgABwAAAAAAAAD4/wgABwAAAAAAAAD+/wAAAAAAAAMAAAD9/wAAAAADAAAAAAD8/wAAAAABAAEAAAD7/wAAAQAAAAAAAAD6/wAAAAAAAAAAAAD5/wAAAQAAAAAAAAD5/wEAAQAAAAAAAAD9/wEAAAADAAEAAAD+/wEAAQABAAAAAAD8/wEAAAABAAEAAAD7/wEAAAACAAMAAAD6/wEAAAABAAAAAAD+/wYAAQABAAEAAAD+/wUAAAABAAMAAAD+/wQAAQABAAAAAAD+/wMAAQABAAAAAAD+/wIAAQAAAAAAAAD9/wYAAQABAAAAAAD9/wUAAQAAAAAAAAD9/wQAAQABAAAAAAD9/wMAAQABAAEAAAD9/wIAAAADAAIAAAD8/wYAAQABAAAAAAD8/wUAAAADAAMAAAD8/wQAAAAAAAIAAAD8/wMAAAADAAIAAAD8/wIAAAABAAIAAAD7/wYAAQAAAAEAAAD7/wUAAAACAAMAAAD7/wQAAQABAAAAAAD7/wMAAAABAAMAAAD7/wIAAQAAAAAAAAD6/wYAAAAAAAEAAAD6/wUAAAADAAMAAAD6/wQAAQABAAAAAAD6/wMAAQABAAEAAAD6/wIAAAADAAMAAAD5/wYAAQABAAEAAAD5/wUAAAACAAIAAAD5/wQAAAADAAAAAAD5/wMAAQAAAAAAAAD5/wIAAAACAAMAAAAGAAYAAAABAAEAAAAGAAUAAAACAAAAAAAGAAQAAQAAAAAAAAAGAAMAAQABAAEAAAAGAAIAAQAAAAEAAAAGAAEAAAADAAIAAAAFAAYAAQAAAAEAAAAFAAUAAAAAAAIAAAAFAAQAAAAAAAAAAAAFAAMAAAAAAAMAAAAFAAIAAAAAAAIAAAAFAAEAAAACAAIAAAAEAAYAAAADAAMAAAAEAAUAAQAAAAAAAAAEAAQAAQABAAAAAAAEAAMAAQAAAAEAAAAEAAIAAQABAAAAAAAEAAEAAAABAAIAAAADAAYAAAABAAMAAAADAAUAAAAAAAIAAAADAAQAAAAAAAAAAAADAAMAAQAAAAAAAAADAAIAAQABAAAAAAADAAEAAQAAAAAAAAACAAYAAQABAAEAAAACAAUAAQAAAAAAAAACAAQAAQAAAAAAAAACAAMAAAADAAMAAAACAAIAAQABAAEAAAACAAEAAQABAAEAAAABAAYAAQABAAAAAAABAAUAAAAAAAIAAAABAAQAAAADAAIAAAABAAMAAAACAAAAAAABAAIAAQAAAAEAAAABAAEAAAAAAAMAAAAAAAYAAAAAAAAAAAAAAAUAAQABAAEAAAAAAAQAAAABAAIAAAAAAAMAAAABAAEAAAAAAAIAAAADAAMAAAAAAAEAAAAAAAAAAAAGAAAAAAADAAAAAAAGAP7/AQAAAAEAAAAGAP3/AQAAAAEAAAAGAPz/AAABAAMAAAAGAPv/AQAAAAEAAAAGAPr/AQABAAEAAAAGAPn/AQAAAAAAAAAFAAAAAAACAAAAAAAFAP7/AAADAAMAAAAFAP3/AAAAAAAAAAAFAPz/AQAAAAEAAAAFAPv/AAADAAMAAAAFAPr/AQABAAAAAAAFAPn/AAAAAAIAAAAEAAAAAAABAAAAAAAEAP7/AAACAAMAAAAEAP3/AQABAAAAAAAEAPz/AAAAAAIAAAAEAPv/AAABAAIAAAAEAPr/AAADAAMAAAAEAPn/AQABAAEAAAADAAAAAQAAAAEAAAADAP7/AAADAAAAAAADAP3/AQAAAAAAAAADAPz/AAABAAMAAAADAPv/AQABAAEAAAADAPr/AAACAAMAAAADAPn/AQABAAEAAAACAAAAAQABAAEAAAACAP7/AAACAAEAAAACAP3/AAAAAAAAAAACAPz/AQABAAEAAAACAPv/AQAAAAEAAAACAPr/AAABAAIAAAACAPn/AAAAAAAAAAABAAAAAQABAAEAAAABAP7/AAABAAAAAAABAP3/AQABAAEAAAABAPz/AQABAAEAAAABAPv/AQABAAEAAAABAPr/AAAAAAMAAAABAPn/AQAAAAEAAAD///7/AQABAAAAAAD///3/AQABAAEAAAD///z/AQAAAAAAAAD///v/AQAAAAAAAAD///r/AAACAAMAAAD///n/AQABAAAAAAD+//7/AQABAAAAAAD+//3/AAAAAAIAAAD+//z/AAADAAMAAAD+//v/AQABAAEAAAD+//r/AAABAAMAAAD+//n/AQABAAAAAAD9//7/AQAAAAAAAAD9//3/AQAAAAEAAAD9//z/AAACAAMAAAD9//v/AAAAAAAAAAD9//r/AQAAAAAAAAD9//n/AAADAAIAAAD8//7/AQABAAAAAAD8//3/AQAAAAEAAAD8//z/AAABAAMAAAD8//v/AQAAAAAAAAD8//r/AAAAAAIAAAD8//n/AAACAAIAAAD7//7/AAAAAAAAAAD7//3/AQABAAAAAAD7//z/AAAAAAMAAAD7//v/AQAAAAAAAAD7//r/AQAAAAAAAAD7//n/AAABAAIAAAD6//7/AQABAAAAAAD6//3/AQABAAEAAAD6//z/AQABAAAAAAD6//v/AQAAAAEAAAD6//r/AQAAAAEAAAD6//n/AQABAAAAAAD5//7/AAADAAMAAAD5//3/AQAAAAEAAAD5//z/AAADAAIAAAD5//v/AAADAAEAAAD5//r/AAADAAEAAAD5//n/AAADAAAAAAD///f/AQAAAAAAAAAAAPf/AQABAAEAAAA=")
 tile_set = ExtResource("1_lekuc")
 script = ExtResource("3_bks8w")
 
@@ -320,84 +328,110 @@ position = Vector2(3840, 1280)
 
 [node name="BasicEnemy" parent="Map_Decorations_Master/Enemies" node_paths=PackedStringArray("player", "map_manager", "tilemap") instance=ExtResource("7_jwk10")]
 position = Vector2(-3328, -2816)
-fear_level = 0
 player = NodePath("../../../Player")
 map_manager = NodePath("../../../Map")
 tilemap = NodePath("../../../Map/FullRevealLayer")
+
+[node name="SkullEmoji3" parent="Map_Decorations_Master/Enemies/BasicEnemy" index="5"]
+visible = false
 
 [node name="BasicEnemy2" parent="Map_Decorations_Master/Enemies" node_paths=PackedStringArray("player", "map_manager", "tilemap") instance=ExtResource("7_jwk10")]
 position = Vector2(-768, -3840)
-fear_level = 0
+fear_level = 1
 player = NodePath("../../../Player")
 map_manager = NodePath("../../../Map")
 tilemap = NodePath("../../../Map/FullRevealLayer")
+
+[node name="SkullEmoji2" parent="Map_Decorations_Master/Enemies/BasicEnemy2" index="4"]
+visible = false
+
+[node name="SkullEmoji3" parent="Map_Decorations_Master/Enemies/BasicEnemy2" index="5"]
+visible = false
 
 [node name="BasicEnemy3" parent="Map_Decorations_Master/Enemies" node_paths=PackedStringArray("player", "map_manager", "tilemap") instance=ExtResource("7_jwk10")]
 position = Vector2(3840, -3840)
-fear_level = 0
 player = NodePath("../../../Player")
 map_manager = NodePath("../../../Map")
 tilemap = NodePath("../../../Map/FullRevealLayer")
 
+[node name="SkullEmoji2" parent="Map_Decorations_Master/Enemies/BasicEnemy3" index="4"]
+visible = false
+
 [node name="BasicEnemy4" parent="Map_Decorations_Master/Enemies" node_paths=PackedStringArray("player", "map_manager", "tilemap") instance=ExtResource("7_jwk10")]
 position = Vector2(3328, 1792)
-fear_level = 0
+fear_level = 3
 player = NodePath("../../../Player")
 map_manager = NodePath("../../../Map")
 tilemap = NodePath("../../../Map/FullRevealLayer")
 
 [node name="BasicEnemy5" parent="Map_Decorations_Master/Enemies" node_paths=PackedStringArray("player", "map_manager", "tilemap") instance=ExtResource("7_jwk10")]
 position = Vector2(3840, 3328)
-fear_level = 0
 player = NodePath("../../../Player")
 map_manager = NodePath("../../../Map")
 tilemap = NodePath("../../../Map/FullRevealLayer")
+
+[node name="SkullEmoji2" parent="Map_Decorations_Master/Enemies/BasicEnemy5" index="4"]
+visible = false
 
 [node name="BasicEnemy6" parent="Map_Decorations_Master/Enemies" node_paths=PackedStringArray("player", "map_manager", "tilemap") instance=ExtResource("7_jwk10")]
 position = Vector2(2816, 768)
-fear_level = 0
 player = NodePath("../../../Player")
 map_manager = NodePath("../../../Map")
 tilemap = NodePath("../../../Map/FullRevealLayer")
 
+[node name="SkullEmoji" parent="Map_Decorations_Master/Enemies/BasicEnemy6" index="3"]
+visible = false
+
 [node name="BasicEnemy7" parent="Map_Decorations_Master/Enemies" node_paths=PackedStringArray("player", "map_manager", "tilemap") instance=ExtResource("7_jwk10")]
 position = Vector2(768, 1792)
-fear_level = 0
+fear_level = 3
 player = NodePath("../../../Player")
 map_manager = NodePath("../../../Map")
 tilemap = NodePath("../../../Map/FullRevealLayer")
 
 [node name="BasicEnemy8" parent="Map_Decorations_Master/Enemies" node_paths=PackedStringArray("player", "map_manager", "tilemap") instance=ExtResource("7_jwk10")]
 position = Vector2(256, 3328)
-fear_level = 0
+fear_level = 3
 player = NodePath("../../../Player")
 map_manager = NodePath("../../../Map")
 tilemap = NodePath("../../../Map/FullRevealLayer")
 
 [node name="BasicEnemy9" parent="Map_Decorations_Master/Enemies" node_paths=PackedStringArray("player", "map_manager", "tilemap") instance=ExtResource("7_jwk10")]
 position = Vector2(-1792, 1792)
-fear_level = 0
+fear_level = 3
 player = NodePath("../../../Player")
 map_manager = NodePath("../../../Map")
 tilemap = NodePath("../../../Map/FullRevealLayer")
 
 [node name="BasicEnemy10" parent="Map_Decorations_Master/Enemies" node_paths=PackedStringArray("player", "map_manager", "tilemap") instance=ExtResource("7_jwk10")]
 position = Vector2(-2816, 2816)
-fear_level = 0
+fear_level = 1
 player = NodePath("../../../Player")
 map_manager = NodePath("../../../Map")
 tilemap = NodePath("../../../Map/FullRevealLayer")
+
+[node name="SkullEmoji2" parent="Map_Decorations_Master/Enemies/BasicEnemy10" index="4"]
+visible = false
+
+[node name="SkullEmoji3" parent="Map_Decorations_Master/Enemies/BasicEnemy10" index="5"]
+visible = false
 
 [node name="BasicEnemy11" parent="Map_Decorations_Master/Enemies" node_paths=PackedStringArray("player", "map_manager", "tilemap") instance=ExtResource("7_jwk10")]
 position = Vector2(-3328, 2304)
-fear_level = 0
+fear_level = 1
 player = NodePath("../../../Player")
 map_manager = NodePath("../../../Map")
 tilemap = NodePath("../../../Map/FullRevealLayer")
 
+[node name="SkullEmoji2" parent="Map_Decorations_Master/Enemies/BasicEnemy11" index="4"]
+visible = false
+
+[node name="SkullEmoji3" parent="Map_Decorations_Master/Enemies/BasicEnemy11" index="5"]
+visible = false
+
 [node name="BasicEnemy12" parent="Map_Decorations_Master/Enemies" node_paths=PackedStringArray("player", "map_manager", "tilemap") instance=ExtResource("7_jwk10")]
 position = Vector2(-2304, -1792)
-fear_level = 0
+fear_level = 3
 player = NodePath("../../../Player")
 map_manager = NodePath("../../../Map")
 tilemap = NodePath("../../../Map/FullRevealLayer")
@@ -405,6 +439,54 @@ tilemap = NodePath("../../../Map/FullRevealLayer")
 [node name="Pickups" type="Node2D" parent="Map_Decorations_Master"]
 
 [node name="PickupRespawner" parent="Map_Decorations_Master/Pickups" instance=ExtResource("6_e446s")]
+
+[node name="CourageBoost_Sword2" parent="Map_Decorations_Master/Pickups/PickupRespawner" instance=ExtResource("9_rqhej")]
+position = Vector2(-3840, -3328)
+courage_increase = 2
+
+[node name="Sprite2D" parent="Map_Decorations_Master/Pickups/PickupRespawner/CourageBoost_Sword2" index="1"]
+texture = SubResource("AtlasTexture_odfv6")
+
+[node name="CourageWisp" parent="Map_Decorations_Master/Pickups/PickupRespawner/CourageBoost_Sword2" index="2"]
+position = Vector2(-89, -59)
+
+[node name="CourageWisp2" parent="Map_Decorations_Master/Pickups/PickupRespawner/CourageBoost_Sword2" instance=ExtResource("10_ve0j8")]
+position = Vector2(76, -92)
+scale = Vector2(0.685366, 0.841864)
+
+[node name="CourageBoost_Sword3" parent="Map_Decorations_Master/Pickups/PickupRespawner" instance=ExtResource("9_rqhej")]
+position = Vector2(1792, -3840)
+courage_increase = 2
+
+[node name="Sprite2D" parent="Map_Decorations_Master/Pickups/PickupRespawner/CourageBoost_Sword3" index="1"]
+texture = SubResource("AtlasTexture_odfv6")
+
+[node name="CourageWisp" parent="Map_Decorations_Master/Pickups/PickupRespawner/CourageBoost_Sword3" index="2"]
+position = Vector2(-89, -59)
+
+[node name="CourageWisp2" parent="Map_Decorations_Master/Pickups/PickupRespawner/CourageBoost_Sword3" instance=ExtResource("10_ve0j8")]
+position = Vector2(76, -92)
+scale = Vector2(0.685366, 0.841864)
+
+[node name="CourageBoost_Book" parent="Map_Decorations_Master/Pickups/PickupRespawner" instance=ExtResource("9_rqhej")]
+position = Vector2(-1792, 2304)
+courage_increase = 1
+
+[node name="CourageBoost_Book2" parent="Map_Decorations_Master/Pickups/PickupRespawner" instance=ExtResource("9_rqhej")]
+position = Vector2(3328, 3840)
+courage_increase = 1
+
+[node name="CourageBoost_AnimBook" parent="Map_Decorations_Master/Pickups/PickupRespawner" instance=ExtResource("9_rqhej")]
+position = Vector2(-3328, 2816)
+courage_increase = 3
+
+[node name="CourageWisp2" parent="Map_Decorations_Master/Pickups/PickupRespawner/CourageBoost_AnimBook" instance=ExtResource("10_ve0j8")]
+position = Vector2(120, -83)
+scale = Vector2(0.685366, 0.841864)
+
+[node name="CourageWisp3" parent="Map_Decorations_Master/Pickups/PickupRespawner/CourageBoost_AnimBook" instance=ExtResource("10_ve0j8")]
+position = Vector2(-83, 9.00002)
+scale = Vector2(0.685366, 0.841864)
 
 [node name="Decorations" type="Node2D" parent="Map_Decorations_Master"]
 
@@ -493,9 +575,27 @@ z_index = 4
 position = Vector2(256, 1536)
 texture = SubResource("AtlasTexture_ve0j8")
 
-[node name="Player" parent="." node_paths=PackedStringArray("map_manager", "tilemap", "pickup_respawner") instance=ExtResource("3_jgn2k")]
+[node name="Gate" parent="Map_Decorations_Master" instance=ExtResource("13_odfv6")]
+position = Vector2(0, -4352)
+
+[node name="Player" parent="." node_paths=PackedStringArray("map_manager", "tilemap", "pickup_respawner", "gate") instance=ExtResource("3_jgn2k")]
 z_index = 5
 position = Vector2(-256, 256)
 map_manager = NodePath("../Map")
 tilemap = NodePath("../Map/FullRevealLayer")
 pickup_respawner = NodePath("../Map_Decorations_Master/Pickups/PickupRespawner")
+gate = NodePath("../Map_Decorations_Master/Gate")
+
+[editable path="Map_Decorations_Master/Enemies/BasicEnemy"]
+[editable path="Map_Decorations_Master/Enemies/BasicEnemy2"]
+[editable path="Map_Decorations_Master/Enemies/BasicEnemy3"]
+[editable path="Map_Decorations_Master/Enemies/BasicEnemy5"]
+[editable path="Map_Decorations_Master/Enemies/BasicEnemy6"]
+[editable path="Map_Decorations_Master/Enemies/BasicEnemy10"]
+[editable path="Map_Decorations_Master/Enemies/BasicEnemy11"]
+[editable path="Map_Decorations_Master/Pickups/PickupRespawner/CourageBoost_Sword2"]
+[editable path="Map_Decorations_Master/Pickups/PickupRespawner/CourageBoost_Sword3"]
+[editable path="Map_Decorations_Master/Pickups/PickupRespawner/CourageBoost_Book"]
+[editable path="Map_Decorations_Master/Pickups/PickupRespawner/CourageBoost_Book2"]
+[editable path="Map_Decorations_Master/Pickups/PickupRespawner/CourageBoost_AnimBook"]
+[editable path="Map_Decorations_Master/Gate"]
