@@ -1,8 +1,9 @@
 class_name Player
 extends Node2D
 
-const TILE_SIZE := 16
-const RESPAWN_TILE := Vector2i(7,3)
+const TILE_SIZE := 512
+const TOTEMS_NEEDED := 2
+const RESPAWN_TILE := Vector2i(-1,0)
 
 #region External Object References
 @export var gm:GameManager
@@ -20,10 +21,12 @@ var is_next_tile_occupied:bool = false
 
 #region Animation Signals
 signal anim_is_moving(dir:int)
+signal anim_return_to_idle
+signal anim_is_scared
 #endregion
 
 #region Player Metrics
-var movement_speed := 0.5
+var movement_speed := 30
 var courage_remaining:float = 0.0
 var recent_blackout:=false
 # The tiles discovered during an expedition. Tiles in this array can be lost for good.
@@ -31,6 +34,7 @@ var tiles_visited:Array = []
 # Upon returning to the village, tiles are saved in here and cannot be lost on death.
 # The next run will start with all of these still available.
 var tiles_recorded:Array = []
+var totems_found := 0
 #endregion
 
 var lost_combat := false
@@ -52,6 +56,7 @@ func _ready() -> void:
 	adjust_courage(3.0)
 	tiles_visited.append(get_current_tile())
 	print("Player started on Tile (%d,%d)"%[get_current_tile().x, get_current_tile().y])
+	anim_return_to_idle.emit()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -97,6 +102,10 @@ func _physics_process(delta: float) -> void:
 		## This will cause the game manager to run all end-of-turn behaviours
 		# HERE we can resolve stuff like picking up items, activating traps, etc etc
 		on_player_turn_ended.emit(tilemap.local_to_map(global_position)) 
+		## After movement to a tile is finished, return to the idle animation if no more inputs are being done
+		if(!Input.is_action_pressed("move_left") && !Input.is_action_pressed("move_up") && 
+		!Input.is_action_pressed("move_down") && !Input.is_action_pressed("move_right")):
+			anim_return_to_idle.emit()
 		
 		return
 	
@@ -123,13 +132,16 @@ func try_move(direction:Vector2):
 	if(next_tile_check.is_colliding()):
 		if(next_tile_check.get_collider() is Enemy):
 			var target_enemy = next_tile_check.get_collider() as Enemy
-			
 			resolve_combat(target_enemy, current_tile, target_tile)
 			return # Whether or not we move is determined by the combat function. Break out of try_move.
 		elif(next_tile_check.get_collider() is CourageBoost):
 			var target_pickup = next_tile_check.get_collider() as CourageBoost
 			target_pickup.on_pickup(self)
+		elif(next_tile_check.get_collider() is Totem):
+			var target_totem = next_tile_check.get_collider() as Totem
+			target_totem.on_activate(self)
 		else: # The only other thing it could possible be colliding with is an obstacle
+			anim_return_to_idle.emit()
 			return
 	
 	
@@ -137,6 +149,7 @@ func try_move(direction:Vector2):
 	var target_tile_data:TileData = tilemap.get_cell_tile_data(target_tile)
 	# If unoccupied but not walkable (i.e. Obstacle spaces, don't move
 	if(target_tile_data.get_custom_data("Walkable") == false):
+		anim_return_to_idle.emit()
 		return
 	if(target_tile_data.get_custom_data("SafeZone") == true):
 		on_return_to_village()
@@ -196,10 +209,8 @@ func move_to_tile(current_tile:Vector2, target_tile:Vector2):
 
 func adjust_courage(_delta:float) -> void:
 	courage_remaining += _delta
-	# Clamp to 5, and run death check.
-	if(courage_remaining <= 0):
-		on_die()
-	elif(courage_remaining > 5):
+	# Clamp to 5 (maximum number of wisps)
+	if(courage_remaining > 5):
 		courage_remaining = 5
 	wisp_manager.update_wisp_visuals()
 	

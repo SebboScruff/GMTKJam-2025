@@ -1,9 +1,40 @@
-[gd_scene load_steps=2 format=3 uid="uid://dhk2eboehfeqx"]
+[gd_scene load_steps=6 format=3 uid="uid://dhk2eboehfeqx"]
 
-[ext_resource type="Texture2D" uid="uid://bo7qk3dulmuoq" path="res://assets/temp_testing/lil wispy.png" id="1_ydvqx"]
+[ext_resource type="Texture2D" uid="uid://dppihrv6ym8h5" path="res://assets/character_sprites/Wisp.png" id="1_up84e"]
 
-[node name="CourageWisp" type="Sprite2D"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_by88x"]
+atlas = ExtResource("1_up84e")
+region = Rect2(0, 0, 131, 246)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ajm3e"]
+atlas = ExtResource("1_up84e")
+region = Rect2(131, 0, 131, 246)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_25hho"]
+atlas = ExtResource("1_up84e")
+region = Rect2(262, 0, 131, 246)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0s26y"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_by88x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ajm3e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_25hho")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[node name="CourageWisp" type="AnimatedSprite2D"]
 z_index = 50
 position = Vector2(0, 4.76837e-07)
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("1_ydvqx")
+scale = Vector2(0.027, 0.036)
+sprite_frames = SubResource("SpriteFrames_0s26y")
+autoplay = "default"
+frame_progress = 0.89225

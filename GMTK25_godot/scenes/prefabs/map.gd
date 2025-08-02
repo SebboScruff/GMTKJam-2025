@@ -2,13 +2,13 @@ class_name FogManager
 extends Node2D
 
 ## These are the tiles that the player has already exactly stepped on
-@onready var full_reveal_layer: TileMapLayer = $FullRevealLayer 
+@onready var full_reveal_layer: TileMapLayer = %FullRevealLayer 
 ## These are directly adjacent to the player's visited tiles. Reveals Enemies.
-@onready var quarter_reveal_layer: FogMap = $QuarterRevealLayer
+@onready var quarter_reveal_layer: FogMap = %QuarterFogLayer
 ## These are 2 spaces out from where the player has been. Reveals items/terrain, hides enemies
-@onready var half_reveal_layer: FogMap = $HalfRevealLayer
+@onready var half_reveal_layer: FogMap = %HalfFogLayer
 ## The whole map starts on this. Completely hides everything.
-@onready var fog_layer: FogMap = $FogLayer
+@onready var fog_layer: FogMap = %FogLayer
 
 @export var player:Player
 

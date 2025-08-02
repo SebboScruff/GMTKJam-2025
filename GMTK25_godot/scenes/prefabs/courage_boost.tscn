@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://bkqroi178ckve" path="res://scenes/prefabs/courage_boost.gd" id="1_i7evw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i7evw"]
-size = Vector2(16, 16)
+size = Vector2(247, 258)
 
 [node name="CourageBoost" type="Area2D"]
 z_index = 2

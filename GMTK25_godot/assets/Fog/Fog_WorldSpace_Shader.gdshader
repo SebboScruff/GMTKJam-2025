@@ -39,7 +39,7 @@ void fragment() {
     float base_alpha = texture(TEXTURE, UV).a;
 
 	COLOR.rgb = fog_color.rgb * finalcolor.rgb;
-	COLOR.a = fog_color.a * base_alpha;
+	//COLOR.a = fog_color.a * base_alpha;
 	//COLOR.rgb = newcolor * fog_color.rgb;
 	//COLOR = vec4((newcolor_r * fog_color_r.rgb).r, (newcolor_g * fog_color_g.rgb).g, (newcolor_b * fog_color_b.rgb).b, 1.0);
 	//COLOR.a = clamp(base_alpha * 5.0 * texture(TEXTURE, UV).a, 0.0, 1.0);
