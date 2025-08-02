@@ -1,6 +1,8 @@
 class_name WispManager
 extends Node2D
 
+const WISP_BASE_SIZE := 0.025
+
 @onready var player: Player = $"../.."
 var wisps = []
 
@@ -16,8 +18,8 @@ func update_wisp_visuals() -> void:
 	## show the relevant wisps
 	for i in range(num_wisps):
 		wisps[i].set_visible(true)
-		wisps[i].scale = Vector2(0.3,0.3)
+		wisps[i].scale = Vector2(WISP_BASE_SIZE,WISP_BASE_SIZE)
 	## scale down the last wisp
 	var last_wisp_size = player.courage_remaining - int(player.courage_remaining)
 	if(last_wisp_size != 0):
-		wisps[num_wisps-1].scale = Vector2(0.3,0.3)*(last_wisp_size)
+		wisps[num_wisps-1].scale = Vector2(WISP_BASE_SIZE,WISP_BASE_SIZE)*(last_wisp_size)

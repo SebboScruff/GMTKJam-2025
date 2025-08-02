@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://d2mna074yu4se"]
+
+[ext_resource type="Script" uid="uid://bih4awp5wohog" path="res://scenes/prefabs/totem.gd" id="1_7w5js"]
+[ext_resource type="Texture2D" uid="uid://btxmtgvybd06f" path="res://assets/decoration_sprites/Totem.png" id="1_k3pd3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7w5js"]
+size = Vector2(512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_46lr1"]
+atlas = ExtResource("1_k3pd3")
+region = Rect2(0, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7lbqq"]
+atlas = ExtResource("1_k3pd3")
+region = Rect2(512, 0, 512, 512)
+
+[node name="Totem" type="Area2D"]
+z_index = 4
+collision_layer = 16
+script = ExtResource("1_7w5js")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_7w5js")
+
+[node name="InactiveSprite" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_46lr1")
+
+[node name="ActiveSprite" type="Sprite2D" parent="."]
+visible = false
+texture = SubResource("AtlasTexture_7lbqq")
