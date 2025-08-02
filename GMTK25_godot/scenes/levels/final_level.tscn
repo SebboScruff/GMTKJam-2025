@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=4 uid="uid://blssh5cmsi1qk"]
+[gd_scene load_steps=3 format=3 uid="uid://blssh5cmsi1qk"]
 
 [ext_resource type="TileSet" uid="uid://dwh345fy5jv18" path="res://assets/Grass_tileset_allfoglayers.tres" id="1_lekuc"]
 [ext_resource type="TileSet" uid="uid://cww51own2at7u" path="res://assets/Fog_Tileset.tres" id="3_vmyuh"]
@@ -8,7 +8,6 @@
 [node name="Map" type="Node2D" parent="."]
 
 [node name="FullRevealLayer" type="TileMapLayer" parent="Map"]
-tile_map_data = PackedByteArray("AAD7//3/AAAAAAEAAAD8//3/AQAAAAAAAAD9//3/AQABAAEAAAD+//3/AQABAAEAAAD///3/AQABAAEAAAAAAP3/AQABAAAAAAAAAPz/AQAAAAAAAAAAAPv/AQABAAEAAAD///v/AQABAAEAAAD+//v/AQAAAAEAAAD9//v/AQAAAAEAAAD9//z/AQAAAAAAAAD8//z/AQABAAEAAAD8//7/AQAAAAAAAAD9//7/AQABAAAAAAD///z/AQABAAAAAAD+//z/AQAAAAEAAAD7//7/AAAAAAEAAAD7//z/AAAAAAEAAAD7//v/AAAAAAAAAAD8//v/AAADAAIAAAD8//r/AAABAAMAAAD9//r/AAACAAMAAAD+//r/AAACAAMAAAD///r/AAACAAMAAAAAAPr/AAACAAMAAAABAPr/AAADAAMAAAABAPv/AAAAAAEAAAABAPz/AAAAAAEAAAABAP3/AAAAAAEAAAABAP7/AAADAAIAAAAAAP7/AAACAAMAAAD///7/AAACAAMAAAD+//7/AAABAAAAAAD+////AAADAAIAAAD9////AAACAAMAAAD8////AAACAAIAAAD7////AAABAAIAAAA=")
 tile_set = ExtResource("1_lekuc")
 
 [node name="QuarterFogLayer" type="TileMapLayer" parent="Map"]
