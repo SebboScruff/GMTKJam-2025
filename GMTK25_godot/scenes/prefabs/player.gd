@@ -2,7 +2,6 @@ class_name Player
 extends Node2D
 
 const TILE_SIZE := 512
-const TOTEMS_NEEDED := 2
 const RESPAWN_TILE := Vector2i(-1,0)
 
 #region External Object References
@@ -10,6 +9,7 @@ const RESPAWN_TILE := Vector2i(-1,0)
 @export var map_manager:FogManager
 @export var tilemap:TileMapLayer # This is the fully revealed tilemap, used for determining which tiles can be walked on.
 @export var pickup_respawner:PickupRespawner
+@export var gate:ExitGate
 #endregion
 #region Internal Object References
 @onready var player_sprite: Sprite2D = $PlayerSprite
@@ -152,6 +152,15 @@ func try_move(direction:Vector2):
 		elif(next_tile_check.get_collider() is Totem):
 			var target_totem = next_tile_check.get_collider() as Totem
 			target_totem.on_activate(self)
+			gate.check_player_totem_count(self)
+		elif(next_tile_check.get_collider() is ExitGate):
+			var g = next_tile_check.get_collider() as ExitGate
+			if(g.is_open):
+				print("You made it out good job.")
+			else:
+				anim_return_to_idle.emit()
+				return
+			## TODO Scene Transition!
 		else: # The only other thing it could possible be colliding with is an obstacle
 			anim_return_to_idle.emit()
 			return
