@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=4 uid="uid://c6276oj5nbcx5"]
 
 [ext_resource type="Script" uid="uid://bcfsa5i01f578" path="res://scenes/prefabs/map.gd" id="1_3ltby"]
-[ext_resource type="TileSet" uid="uid://kljbw6ac41il" path="res://assets/WoodlandTilemap.tres" id="2_3uig2"]
+[ext_resource type="TileSet" uid="uid://kljbw6ac41il" path="res://assets/TestingTilemap.tres" id="2_3uig2"]
 [ext_resource type="Script" uid="uid://cf6lop0no1dfg" path="res://scenes/prefabs/opacity_change_tilemap.gd" id="3_3ltby"]
 
 [node name="Map" type="Node2D"]

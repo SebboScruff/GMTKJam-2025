@@ -162,7 +162,7 @@ scale = Vector2(32.0536, 31.882)
 
 [node name="CourageWisps" type="Node2D" parent="PlayerAnimSprite"]
 unique_name_in_owner = true
-position = Vector2(-0.250786, 1.12467)
+position = Vector2(14.7787, 270.208)
 scale = Vector2(32.0536, 31.882)
 script = ExtResource("2_56dyf")
 
