@@ -1,12 +1,62 @@
-[gd_scene load_steps=25 format=3 uid="uid://hgxrqo8ht2hs"]
+[gd_scene load_steps=39 format=3 uid="uid://hgxrqo8ht2hs"]
 
 [ext_resource type="Script" uid="uid://321bp12o32b6" path="res://scenes/prefabs/player.gd" id="1_06qtw"]
 [ext_resource type="PackedScene" uid="uid://dhk2eboehfeqx" path="res://scenes/prefabs/courage_wisp.tscn" id="2_8cdkg"]
 [ext_resource type="Script" uid="uid://k23ed2bdgwr0" path="res://scenes/prefabs/wisp_manager.gd" id="2_56dyf"]
+[ext_resource type="Texture2D" uid="uid://bejfsib622bj1" path="res://assets/character_sprites/Character_Scared.png" id="2_jybep"]
 [ext_resource type="Texture2D" uid="uid://76cgge43oxiq" path="res://assets/temp_testing/stick man guy 16x16.png" id="2_tou0u"]
+[ext_resource type="Texture2D" uid="uid://x8hv0761f0tn" path="res://assets/character_sprites/Character_Idle.png" id="3_50rl7"]
 [ext_resource type="Texture2D" uid="uid://df4i7mckmvvxw" path="res://assets/temp_testing/crosshair 16x16.png" id="3_n0leu"]
 [ext_resource type="Script" uid="uid://xh4mf8ifb6xb" path="res://scenes/prefabs/player_anim_sprite.gd" id="5_6v0jn"]
 [ext_resource type="Texture2D" uid="uid://621w4lkqn12m" path="res://assets/character_sprites/Character_Walk.png" id="6_6o77n"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ajr3h"]
+atlas = ExtResource("2_jybep")
+region = Rect2(0, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gqqm3"]
+atlas = ExtResource("2_jybep")
+region = Rect2(512, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oqywh"]
+atlas = ExtResource("2_jybep")
+region = Rect2(1024, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sutpr"]
+atlas = ExtResource("2_jybep")
+region = Rect2(1536, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tf2tk"]
+atlas = ExtResource("2_jybep")
+region = Rect2(0, 512, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xxx3e"]
+atlas = ExtResource("2_jybep")
+region = Rect2(512, 512, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tg447"]
+atlas = ExtResource("2_jybep")
+region = Rect2(1024, 512, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0t1n1"]
+atlas = ExtResource("2_jybep")
+region = Rect2(1536, 512, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xne2s"]
+atlas = ExtResource("3_50rl7")
+region = Rect2(0, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6mkeb"]
+atlas = ExtResource("3_50rl7")
+region = Rect2(512, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g5m2n"]
+atlas = ExtResource("3_50rl7")
+region = Rect2(1024, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ydol4"]
+atlas = ExtResource("3_50rl7")
+region = Rect2(1536, 0, 512, 512)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6v0jn"]
 atlas = ExtResource("6_6o77n")
@@ -74,6 +124,52 @@ region = Rect2(1536, 0, 512, 512)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ajr3h"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ajr3h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gqqm3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oqywh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sutpr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tf2tk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xxx3e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tg447")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0t1n1")
+}],
+"loop": false,
+"name": &"cowering",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xne2s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6mkeb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g5m2n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ydol4")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 3.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_6v0jn")
@@ -150,9 +246,9 @@ script = ExtResource("1_06qtw")
 [node name="PlayerAnimSprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(0.00782394, -0.0352759)
 sprite_frames = SubResource("SpriteFrames_ajr3h")
-animation = &"walk_down"
-frame = 2
-frame_progress = 0.438788
+animation = &"cowering"
+frame = 7
+frame_progress = 1.0
 script = ExtResource("5_6v0jn")
 
 [node name="Camera2D" type="Camera2D" parent="PlayerAnimSprite"]
