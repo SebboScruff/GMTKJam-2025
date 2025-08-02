@@ -124,18 +124,18 @@ position = Vector2(0, -265)
 scale = Vector2(1.84724, 1.84443)
 sprite_frames = SubResource("SpriteFrames_xj8rs")
 autoplay = "default"
-frame_progress = 0.0534031
+frame_progress = 0.64901
 
 [node name="SkullEmoji2" type="AnimatedSprite2D" parent="."]
 position = Vector2(174, -211)
 scale = Vector2(1.84724, 1.84443)
 sprite_frames = SubResource("SpriteFrames_xj8rs")
 autoplay = "default"
-frame_progress = 0.609071
+frame_progress = 0.204678
 
 [node name="SkullEmoji3" type="AnimatedSprite2D" parent="."]
 position = Vector2(-142, -189)
 scale = Vector2(1.84724, 1.84443)
 sprite_frames = SubResource("SpriteFrames_xj8rs")
 autoplay = "default"
-frame_progress = 0.229244
+frame_progress = 0.824851
