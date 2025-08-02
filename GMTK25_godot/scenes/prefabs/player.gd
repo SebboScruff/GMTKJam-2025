@@ -2,7 +2,7 @@ class_name Player
 extends Node2D
 
 const TILE_SIZE := 16
-const RESPAWN_TILE := Vector2i(7,3)
+const RESPAWN_TILE := Vector2i(-1,0)
 
 #region External Object References
 @export var gm:GameManager
@@ -23,7 +23,7 @@ signal anim_is_moving(dir:int)
 #endregion
 
 #region Player Metrics
-var movement_speed := 0.5
+var movement_speed := 30
 var courage_remaining:float = 0.0
 var recent_blackout:=false
 # The tiles discovered during an expedition. Tiles in this array can be lost for good.
