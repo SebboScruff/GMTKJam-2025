@@ -5,5 +5,5 @@
 [node name="CourageWisp" type="Sprite2D"]
 z_index = 50
 position = Vector2(0, 4.76837e-07)
-scale = Vector2(0.3, 0.3)
+scale = Vector2(0.14, 0.3)
 texture = ExtResource("1_ydvqx")
