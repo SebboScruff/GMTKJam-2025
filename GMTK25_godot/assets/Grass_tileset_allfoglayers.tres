@@ -1,10 +1,11 @@
-[gd_resource type="TileSet" load_steps=14 format=3 uid="uid://dwh345fy5jv18"]
+[gd_resource type="TileSet" load_steps=15 format=3 uid="uid://dwh345fy5jv18"]
 
 [ext_resource type="Texture2D" uid="uid://w1hyi6osnu2s" path="res://assets/Tilesheet_Ground/TileSheet_Grass.jpg" id="1_mnbkh"]
 [ext_resource type="Texture2D" uid="uid://bd12chkxr062s" path="res://assets/Tilesheet_Ground/TileSheet_Dirt.jpg" id="2_gn82i"]
 [ext_resource type="Texture2D" uid="uid://bsy5r7lew548y" path="res://assets/Tilesheet_Ground/TileSheet_Grass_Fog.jpg" id="3_rt7we"]
 [ext_resource type="Texture2D" uid="uid://cde552jm5hyij" path="res://assets/Tilesheet_Ground/TileSheet_Dirt_Fog.jpg" id="4_dhs5q"]
 [ext_resource type="Texture2D" uid="uid://bn51axy704w5c" path="res://assets/Fog/Tile_FogBase.jpg" id="5_gn82i"]
+[ext_resource type="Texture2D" uid="uid://8cureenwujd5" path="res://assets/Tilesheet_Cobbles/Tilesheet_Cobbles.jpg" id="6_rt7we"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bks8w"]
 resource_name = "NoFogGrass"
@@ -736,31 +737,6 @@ texture_region_size = Vector2i(512, 512)
 1:1/0/terrains_peering_bit/top_side = 2
 1:1/0/terrains_peering_bit/top_right_corner = 2
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mnbkh"]
-resource_name = "VillageFloor"
-texture = ExtResource("2_gn82i")
-texture_region_size = Vector2i(512, 512)
-0:0/0 = 0
-0:0/0/modulate = Color(0.838553, 0.406117, 7.70092e-07, 1)
-0:0/0/terrain_set = 0
-0:0/0/custom_data_0 = true
-0:0/0/custom_data_1 = true
-1:0/0 = 0
-1:0/0/modulate = Color(0.838553, 0.406117, 7.70092e-07, 1)
-1:0/0/terrain_set = 0
-1:0/0/custom_data_0 = true
-1:0/0/custom_data_1 = true
-0:1/0 = 0
-0:1/0/modulate = Color(0.838553, 0.406117, 7.70092e-07, 1)
-0:1/0/terrain_set = 0
-0:1/0/custom_data_0 = true
-0:1/0/custom_data_1 = true
-1:1/0 = 0
-1:1/0/modulate = Color(0.838553, 0.406117, 7.70092e-07, 1)
-1:1/0/terrain_set = 0
-1:1/0/custom_data_0 = true
-1:1/0/custom_data_1 = true
-
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rt7we"]
 texture = ExtResource("5_gn82i")
 texture_region_size = Vector2i(512, 512)
@@ -768,6 +744,23 @@ texture_region_size = Vector2i(512, 512)
 1:0/0 = 0
 0:1/0 = 0
 1:1/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dhs5q"]
+resource_name = "VillageFloor"
+texture = ExtResource("6_rt7we")
+texture_region_size = Vector2i(512, 512)
+0:0/0 = 0
+0:0/0/custom_data_0 = true
+0:0/0/custom_data_1 = true
+1:0/0 = 0
+1:0/0/custom_data_0 = true
+1:0/0/custom_data_1 = true
+0:1/0 = 0
+0:1/0/custom_data_0 = true
+0:1/0/custom_data_1 = true
+1:1/0 = 0
+1:1/0/custom_data_0 = true
+1:1/0/custom_data_1 = true
 
 [resource]
 tile_size = Vector2i(512, 512)
@@ -794,5 +787,5 @@ sources/2 = SubResource("TileSetAtlasSource_e446s")
 sources/3 = SubResource("TileSetAtlasSource_jwk10")
 sources/4 = SubResource("TileSetAtlasSource_j5v15")
 sources/5 = SubResource("TileSetAtlasSource_a1sf0")
-sources/6 = SubResource("TileSetAtlasSource_mnbkh")
 sources/7 = SubResource("TileSetAtlasSource_rt7we")
+sources/8 = SubResource("TileSetAtlasSource_dhs5q")

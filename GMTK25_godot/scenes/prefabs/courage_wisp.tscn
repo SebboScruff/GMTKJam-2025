@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://dhk2eboehfeqx"]
+[gd_scene load_steps=7 format=3 uid="uid://dhk2eboehfeqx"]
 
 [ext_resource type="Texture2D" uid="uid://dppihrv6ym8h5" path="res://assets/character_sprites/Wisp.png" id="1_up84e"]
+[ext_resource type="Script" uid="uid://da0y1jcr18vcs" path="res://scenes/prefabs/courage_wisp.gd" id="2_by88x"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_by88x"]
 atlas = ExtResource("1_up84e")
@@ -38,3 +39,4 @@ scale = Vector2(0.027, 0.036)
 sprite_frames = SubResource("SpriteFrames_0s26y")
 autoplay = "default"
 frame_progress = 0.89225
+script = ExtResource("2_by88x")
