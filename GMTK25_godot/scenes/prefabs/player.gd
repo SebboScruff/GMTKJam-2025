@@ -20,6 +20,7 @@ var is_next_tile_occupied:bool = false
 
 #region Animation Signals
 signal anim_is_moving(dir:int)
+signal anim_is_scared
 #endregion
 
 #region Player Metrics
