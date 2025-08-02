@@ -16780,7 +16780,6 @@ tile_set = SubResource("TileSet_3qar1")
 rendering_quadrant_size = 512
 
 [node name="Fog" type="TileMapLayer" parent="TileMap/GrassDirt"]
-visible = false
 top_level = true
 y_sort_enabled = true
 material = ExtResource("3_1v0ok")
