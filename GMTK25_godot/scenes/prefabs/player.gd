@@ -2,12 +2,13 @@ class_name Player
 extends Node2D
 
 const TILE_SIZE := 16
+const RESPAWN_TILE := Vector2i(7,3)
 
 #region External Object References
 @export var gm:GameManager
 @export var map_manager:FogManager
 @export var tilemap:TileMapLayer # This is the fully revealed tilemap, used for determining which tiles can be walked on.
-
+@export var pickup_respawner:PickupRespawner
 #endregion
 #region Internal Object References
 @onready var player_sprite: Sprite2D = $PlayerSprite
@@ -61,7 +62,7 @@ func _process(delta: float) -> void:
 		return
 	
 	if(Input.is_action_just_pressed("debug_activate")):
-		on_blackout()
+		on_die()
 	if(!lost_combat):
 		if(Input.is_action_pressed("move_up")):
 			next_tile_check.target_position = Vector2(0, -TILE_SIZE)
@@ -235,10 +236,29 @@ func on_blackout() -> void:
 	
 func on_die() -> void:
 	print("Player died!")
-	#1: remove all tiles from tiles_visited
-	#2: re-fog entire map, respawn/reactivate items? i think?
-	#3: respawn player inside village
-	#4: add tiles_recorded to tiles_visited.
+	# Play and wait for Death Animation if we have one
+	
+	## PLAYER RESET
+	# remove all visited tiles fromm the player's list
+	tiles_visited.clear()
+	# respawn player inside village
+	global_position = tilemap.map_to_local(RESPAWN_TILE)
+	# reset courage back to 3
+	courage_remaining = 3
+	
+	## MAP RESET:
+	#2: re-fog entire map
+	map_manager.reset_fog_completely()
+	#3: Respawn/Reactivate items
+	if(pickup_respawner != null):
+		pickup_respawner.mass_respawn()
+	
+	## RECOVER SAVED TILES
+	#add tiles_recorded to tiles_visited.
+	tiles_visited.append_array(tiles_recorded)
+	#6: remove fog around tiles visited
+	for t in tiles_visited:
+		map_manager.update_fog(t)
 
 func on_return_to_village() -> void:
 	print("Player returned to village!")
