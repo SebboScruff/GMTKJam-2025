@@ -7,6 +7,9 @@ extends Area2D
 
 @export var map_manager:FogManager
 @export var tilemap:TileMapLayer
+@onready var anim_sprite: AnimatedSprite2D = $AnimatedSprite2D
+
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -18,7 +21,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	if(!anim_sprite.is_playing()):
+		anim_sprite.play("idle")
 
 func try_find_player(_current_player_tile:Vector2i) -> void:
 	## 1. Search 4 adjacent tiles
@@ -34,6 +38,7 @@ func try_find_player(_current_player_tile:Vector2i) -> void:
 			var player_wisp_count = ceil(player.courage_remaining)
 			print("Player is getting attacked by %s."%name)
 			print("Player has %d Wisps, Enemy has  %d Fear"%[player_wisp_count, fear_level])
+			anim_sprite.play("Attack")
 			# Check based on this enemy's Fear level?
 			# Then deal some amount of damage to the player
 			# and Fog up the map

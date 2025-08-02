@@ -12,3 +12,7 @@ func _on_player_anim_is_moving(dir: int) -> void:
 			play("walk_right")
 		_:
 			print("Invalid movement direction passed to player sprite.")
+
+
+func _on_player_anim_return_to_idle() -> void:
+	play("idle")

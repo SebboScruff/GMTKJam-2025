@@ -246,14 +246,14 @@ script = ExtResource("1_06qtw")
 [node name="PlayerAnimSprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(0.00782394, -0.0352759)
 sprite_frames = SubResource("SpriteFrames_ajr3h")
-animation = &"cowering"
-frame = 7
-frame_progress = 1.0
+animation = &"idle"
+frame_progress = 0.943277
 script = ExtResource("5_6v0jn")
 
 [node name="Camera2D" type="Camera2D" parent="PlayerAnimSprite"]
 position = Vector2(-0.250786, 1.12467)
 scale = Vector2(32.0536, 31.882)
+zoom = Vector2(0.43, 0.43)
 
 [node name="CourageWisps" type="Node2D" parent="PlayerAnimSprite"]
 unique_name_in_owner = true
@@ -262,19 +262,29 @@ scale = Vector2(32.0536, 31.882)
 script = ExtResource("2_56dyf")
 
 [node name="CourageWisp" parent="PlayerAnimSprite/CourageWisps" instance=ExtResource("2_8cdkg")]
-position = Vector2(0.0705334, -14.4588)
+position = Vector2(-0.365414, -13.3175)
+scale = Vector2(0.025, 0.025)
+frame_progress = 0.172296
 
 [node name="CourageWisp2" parent="PlayerAnimSprite/CourageWisps" instance=ExtResource("2_8cdkg")]
-position = Vector2(-4.45835, -13.6648)
+position = Vector2(2.2387, -11.7363)
+scale = Vector2(0.025, 0.025)
+frame_progress = 0.240466
 
 [node name="CourageWisp3" parent="PlayerAnimSprite/CourageWisps" instance=ExtResource("2_8cdkg")]
-position = Vector2(4.45237, -13.6648)
+position = Vector2(-3.20157, -11.7363)
+scale = Vector2(0.025, 0.025)
+frame_progress = 0.868013
 
 [node name="CourageWisp4" parent="PlayerAnimSprite/CourageWisps" instance=ExtResource("2_8cdkg")]
-position = Vector2(-7.78149, -11.3121)
+position = Vector2(4.37871, -8.93669)
+scale = Vector2(0.025, 0.025)
+frame_progress = 0.49088
 
 [node name="CourageWisp5" parent="PlayerAnimSprite/CourageWisps" instance=ExtResource("2_8cdkg")]
-position = Vector2(7.92256, -11.1945)
+position = Vector2(-5.6252, -8.93669)
+scale = Vector2(0.025, 0.025)
+frame_progress = 0.638316
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
 visible = false
@@ -293,3 +303,4 @@ scale = Vector2(32, 32)
 texture = ExtResource("3_n0leu")
 
 [connection signal="anim_is_moving" from="." to="PlayerAnimSprite" method="_on_player_anim_is_moving"]
+[connection signal="anim_return_to_idle" from="." to="PlayerAnimSprite" method="_on_player_anim_return_to_idle"]
