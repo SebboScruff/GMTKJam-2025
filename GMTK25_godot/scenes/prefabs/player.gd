@@ -222,7 +222,7 @@ func resolve_combat(target_enemy:Enemy, _current_tile:Vector2, _target_tile:Vect
 	
 	var wisp_count = ceil(courage_remaining)
 	
-	if(wisp_count == 0 || courage_remaining < target_enemy.fear_level):
+	if(wisp_count == 0 || wisp_count < target_enemy.fear_level):
 		print("Player is too scared to fight!")
 		anim_is_too_scared.emit()
 		lost_combat = true
@@ -354,7 +354,10 @@ func on_die() -> void:
 	anim_return_to_idle.emit()
 	courage_remaining = 3
 	wisp_manager.update_wisp_visuals()
+	recent_blackout = false
+	audio_blackout_end.emit()
 	is_dead = false
+	
 
 func on_return_to_village() -> void:
 	print("Player returned to village!")

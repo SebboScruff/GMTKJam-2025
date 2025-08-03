@@ -107,7 +107,6 @@ position = Vector2(-2304, 2304)
 
 [node name="Sprite2D" parent="Map_Decorations_Master/Obstacles/Obstacle7" index="1"]
 position = Vector2(0, 0)
-texture = ExtResource("9_j64y6")
 
 [node name="Obstacle8" parent="Map_Decorations_Master/Obstacles" instance=ExtResource("6_bks8w")]
 z_index = 6
@@ -173,6 +172,11 @@ position = Vector2(1280, 3328)
 z_index = 6
 position = Vector2(2304, 2304)
 
+[node name="Sprite2D" parent="Map_Decorations_Master/Obstacles/Obstacle20" index="1"]
+position = Vector2(0, 0)
+scale = Vector2(-1, 1)
+texture = ExtResource("9_j64y6")
+
 [node name="Obstacle19" parent="Map_Decorations_Master/Obstacles" instance=ExtResource("6_bks8w")]
 z_index = 6
 position = Vector2(2304, 2816)
@@ -193,6 +197,10 @@ position = Vector2(3840, 2304)
 z_index = 6
 position = Vector2(3328, 1280)
 
+[node name="Sprite2D" parent="Map_Decorations_Master/Obstacles/Obstacle24" index="1"]
+position = Vector2(0, 0)
+texture = ExtResource("9_j64y6")
+
 [node name="Obstacle25" parent="Map_Decorations_Master/Obstacles" instance=ExtResource("6_bks8w")]
 z_index = 6
 position = Vector2(3840, 768)
@@ -200,6 +208,10 @@ position = Vector2(3840, 768)
 [node name="Obstacle26" parent="Map_Decorations_Master/Obstacles" instance=ExtResource("6_bks8w")]
 z_index = 6
 position = Vector2(2304, 1280)
+
+[node name="Sprite2D" parent="Map_Decorations_Master/Obstacles/Obstacle26" index="1"]
+position = Vector2(0, 0)
+texture = ExtResource("9_j64y6")
 
 [node name="Obstacle27" parent="Map_Decorations_Master/Obstacles" instance=ExtResource("6_bks8w")]
 z_index = 6
@@ -256,6 +268,10 @@ position = Vector2(768, -1280)
 [node name="Obstacle40" parent="Map_Decorations_Master/Obstacles" instance=ExtResource("6_bks8w")]
 z_index = 6
 position = Vector2(1792, -3328)
+
+[node name="Sprite2D" parent="Map_Decorations_Master/Obstacles/Obstacle40" index="1"]
+position = Vector2(0, 0)
+texture = ExtResource("9_j64y6")
 
 [node name="Obstacle41" parent="Map_Decorations_Master/Obstacles" instance=ExtResource("6_bks8w")]
 z_index = 6
@@ -760,6 +776,10 @@ player = NodePath("..")
 [editable path="Map_Decorations_Master/Obstacles/Obstacle10"]
 [editable path="Map_Decorations_Master/Obstacles/Obstacle11"]
 [editable path="Map_Decorations_Master/Obstacles/Obstacle12"]
+[editable path="Map_Decorations_Master/Obstacles/Obstacle20"]
+[editable path="Map_Decorations_Master/Obstacles/Obstacle24"]
+[editable path="Map_Decorations_Master/Obstacles/Obstacle26"]
+[editable path="Map_Decorations_Master/Obstacles/Obstacle40"]
 [editable path="Map_Decorations_Master/Obstacles/Obstacle43"]
 [editable path="Map_Decorations_Master/Obstacles/Obstacle44"]
 [editable path="Map_Decorations_Master/Obstacles/Obstacle45"]

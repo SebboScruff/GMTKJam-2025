@@ -13,5 +13,5 @@ collision_layer = 4
 shape = SubResource("RectangleShape2D_1b3ag")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -81)
+position = Vector2(-1, -254)
 texture = ExtResource("1_88d1b")
