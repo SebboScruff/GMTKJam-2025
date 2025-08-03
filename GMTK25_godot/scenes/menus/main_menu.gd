@@ -7,9 +7,18 @@ const LEVEL = preload("res://scenes/levels/final_level.tscn")
 @onready var instruction_screen: Control = $"Instruction Screen"
 
 func _ready() -> void:
-	#show_home_page()
-	## Connect up button signals here
-	pass
+	show_home_page()
+
+func _on_play_button_pressed() -> void:
+	load_game()
+
+
+func _on_instr_button_pressed() -> void:
+	show_instructions()
+
+
+func _on_quit_button_pressed() -> void:
+	get_tree().root.propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST)
 
 func _physics_process(delta: float) -> void:
 	if(Input.is_action_just_pressed("menu_go_back")):

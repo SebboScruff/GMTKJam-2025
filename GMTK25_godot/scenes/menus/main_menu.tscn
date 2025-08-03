@@ -1,7 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://bokggrvrn1d5n"]
+[gd_scene load_steps=8 format=3 uid="uid://bokggrvrn1d5n"]
 
 [ext_resource type="Script" uid="uid://beqwe8yh0qbpu" path="res://scenes/menus/main_menu.gd" id="1_xqga4"]
+[ext_resource type="Texture2D" uid="uid://b7773psuh20cx" path="res://assets/menu_elements/splash art.png" id="2_6bivr"]
 [ext_resource type="Texture2D" uid="uid://div1sprplj6si" path="res://assets/menu_elements/instruction sheet.png" id="2_ovrgc"]
+[ext_resource type="Texture2D" uid="uid://cfxru4de5wn7b" path="res://assets/menu_elements/Menu_Buttons.png" id="3_imvie"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ng0o5"]
+atlas = ExtResource("3_imvie")
+region = Rect2(0, 128, 512, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8r73w"]
+atlas = ExtResource("3_imvie")
+region = Rect2(0, 0, 512, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1hnlc"]
+atlas = ExtResource("3_imvie")
+region = Rect2(0, 256, 512, 128)
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -20,7 +34,41 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="TextureRect" type="TextureRect" parent="HomePage"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_6bivr")
+
+[node name="PlayButton" type="TextureButton" parent="HomePage"]
+layout_mode = 1
+offset_left = 178.0
+offset_top = 461.0
+offset_right = 690.0
+offset_bottom = 589.0
+texture_normal = SubResource("AtlasTexture_ng0o5")
+
+[node name="InstrButton" type="TextureButton" parent="HomePage"]
+layout_mode = 1
+offset_left = 178.0
+offset_top = 600.0
+offset_right = 690.0
+offset_bottom = 728.0
+texture_normal = SubResource("AtlasTexture_8r73w")
+
+[node name="QuitButton" type="TextureButton" parent="HomePage"]
+layout_mode = 1
+offset_left = 178.0
+offset_top = 757.0
+offset_right = 690.0
+offset_bottom = 885.0
+texture_normal = SubResource("AtlasTexture_1hnlc")
+
 [node name="Instruction Screen" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -36,3 +84,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_ovrgc")
+
+[connection signal="pressed" from="HomePage/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="HomePage/InstrButton" to="." method="_on_instr_button_pressed"]
+[connection signal="pressed" from="HomePage/QuitButton" to="." method="_on_quit_button_pressed"]
