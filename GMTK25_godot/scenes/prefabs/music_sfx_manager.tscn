@@ -1,0 +1,42 @@
+[gd_scene load_steps=11 format=3 uid="uid://x1weh8003ae8"]
+
+[ext_resource type="Script" uid="uid://xj8i81vlgy2e" path="res://scenes/prefabs/music_sfx_manager.gd" id="1_lcpfy"]
+[ext_resource type="AudioStream" uid="uid://c1brouso1ggo" path="res://assets/sounds/soundtrack.mp3" id="2_nxgkx"]
+[ext_resource type="AudioStream" uid="uid://dt6iu0xjhb71s" path="res://assets/sounds/Blackout_heartbeat.mp3" id="2_t570c"]
+[ext_resource type="AudioStream" uid="uid://sg12ruvud0wn" path="res://assets/sounds/Step 1.mp3" id="3_p1kxf"]
+[ext_resource type="AudioStream" uid="uid://cm8dxpf0m8wrc" path="res://assets/sounds/Step 2.mp3" id="4_br50d"]
+[ext_resource type="AudioStream" uid="uid://cpmx6h43s7tuu" path="res://assets/sounds/Step 3.mp3" id="5_2ro4l"]
+[ext_resource type="AudioStream" uid="uid://bia6ry07ebhoy" path="res://assets/sounds/Step 4.mp3" id="6_ycfcb"]
+[ext_resource type="AudioStream" uid="uid://ccw1gv44fs0ax" path="res://assets/sounds/attack.mp3" id="7_2ro4l"]
+[ext_resource type="AudioStream" uid="uid://cm0oq60s7fesu" path="res://assets/sounds/Totem Activation.mp3" id="8_ycfcb"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_lcpfy"]
+streams_count = 4
+stream_0/stream = ExtResource("3_p1kxf")
+stream_1/stream = ExtResource("4_br50d")
+stream_2/stream = ExtResource("5_2ro4l")
+stream_3/stream = ExtResource("6_ycfcb")
+
+[node name="MusicSFXManager" type="Node2D"]
+script = ExtResource("1_lcpfy")
+
+[node name="BGM-Source" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_nxgkx")
+volume_db = -15.656
+bus = &"Music"
+
+[node name="SFX_PlayerWalk" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_lcpfy")
+bus = &"Footsteps"
+
+[node name="SFX_PlayerAttack" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_2ro4l")
+bus = &"SFX"
+
+[node name="SFX_ActivateTotem" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_ycfcb")
+bus = &"SFX"
+
+[node name="SFX_PlayerBlackout" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_t570c")
+bus = &"SFX"

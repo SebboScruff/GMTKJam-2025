@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cpmx6h43s7tuu"
+path="res://.godot/imported/Step 3.mp3-56ea9f4fd66b40bd94e317e69d9e3203.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/Step 3.mp3"
+dest_files=["res://.godot/imported/Step 3.mp3-56ea9f4fd66b40bd94e317e69d9e3203.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

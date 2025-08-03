@@ -1,7 +1,20 @@
-[gd_scene load_steps=7 format=3 uid="uid://dhk2eboehfeqx"]
+[gd_scene load_steps=11 format=3 uid="uid://dhk2eboehfeqx"]
 
+[ext_resource type="Texture2D" uid="uid://cw7qhjncma8lo" path="res://assets/character_sprites/Wisp_bouncy.png" id="1_ajm3e"]
 [ext_resource type="Texture2D" uid="uid://dppihrv6ym8h5" path="res://assets/character_sprites/Wisp.png" id="1_up84e"]
 [ext_resource type="Script" uid="uid://da0y1jcr18vcs" path="res://scenes/prefabs/courage_wisp.gd" id="2_by88x"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0s26y"]
+atlas = ExtResource("1_ajm3e")
+region = Rect2(0, 0, 131, 246)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x3f6w"]
+atlas = ExtResource("1_ajm3e")
+region = Rect2(131, 0, 131, 246)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_coyip"]
+atlas = ExtResource("1_ajm3e")
+region = Rect2(262, 0, 131, 246)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_by88x"]
 atlas = ExtResource("1_up84e")
@@ -17,6 +30,20 @@ region = Rect2(262, 0, 131, 246)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0s26y"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0s26y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x3f6w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_coyip")
+}],
+"loop": true,
+"name": &"bouncy",
+"speed": 4.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_by88x")
@@ -38,5 +65,5 @@ position = Vector2(0, 4.76837e-07)
 scale = Vector2(0.027, 0.036)
 sprite_frames = SubResource("SpriteFrames_0s26y")
 autoplay = "default"
-frame_progress = 0.89225
+frame_progress = 0.851601
 script = ExtResource("2_by88x")

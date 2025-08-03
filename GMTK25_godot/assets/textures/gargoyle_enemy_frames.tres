@@ -1,0 +1,65 @@
+[gd_resource type="SpriteFrames" load_steps=9 format=3 uid="uid://c4hbd0o1jjych"]
+
+[ext_resource type="Texture2D" uid="uid://buc3523chrn4v" path="res://assets/character_sprites/Gargoyle.png" id="1_ece2h"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hwvtx"]
+atlas = ExtResource("1_ece2h")
+region = Rect2(0, 512, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o0a7h"]
+atlas = ExtResource("1_ece2h")
+region = Rect2(512, 512, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pcqf4"]
+atlas = ExtResource("1_ece2h")
+region = Rect2(1024, 512, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mxxg2"]
+atlas = ExtResource("1_ece2h")
+region = Rect2(1536, 512, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yxrim"]
+atlas = ExtResource("1_ece2h")
+region = Rect2(2048, 512, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ijhts"]
+atlas = ExtResource("1_ece2h")
+region = Rect2(0, 512, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lvt2s"]
+atlas = ExtResource("1_ece2h")
+region = Rect2(512, 512, 512, 512)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hwvtx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o0a7h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pcqf4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mxxg2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yxrim")
+}],
+"loop": false,
+"name": &"Attack",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ijhts")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lvt2s")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 2.0
+}]
