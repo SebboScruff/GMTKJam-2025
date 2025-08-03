@@ -7,6 +7,7 @@ const LEVEL = preload("res://scenes/levels/final_level.tscn")
 @onready var instruction_screen: Control = $"Instruction Screen"
 
 func _ready() -> void:
+	#show_home_page()
 	## Connect up button signals here
 	pass
 
