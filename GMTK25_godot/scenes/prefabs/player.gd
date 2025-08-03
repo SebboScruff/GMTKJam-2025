@@ -1,8 +1,6 @@
 class_name Player
 extends Node2D
 
-const MAIN_MENU_SCENE = preload("res://scenes/menus/main_menu.tscn")
-
 const TILE_SIZE := 512
 const RESPAWN_TILE := Vector2i(-1,-1)
 const STARTING_COURAGE := 1.0
@@ -185,7 +183,7 @@ func try_move(direction:Vector2):
 			var g = next_tile_check.get_collider() as ExitGate
 			if(g.is_open):
 				print("You made it out good job.")
-				get_tree().change_scene_to_packed(MAIN_MENU_SCENE)
+				get_tree().change_scene_to_file("res://scenes/menus/main_menu.tscn")
 			else:
 				anim_return_to_idle.emit()
 				return

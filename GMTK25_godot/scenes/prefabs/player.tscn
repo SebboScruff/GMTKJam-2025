@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://hgxrqo8ht2hs"]
+[gd_scene load_steps=63 format=3 uid="uid://hgxrqo8ht2hs"]
 
 [ext_resource type="Script" uid="uid://321bp12o32b6" path="res://scenes/prefabs/player.gd" id="1_06qtw"]
 [ext_resource type="PackedScene" uid="uid://dhk2eboehfeqx" path="res://scenes/prefabs/courage_wisp.tscn" id="2_8cdkg"]
@@ -6,9 +6,7 @@
 [ext_resource type="Script" uid="uid://k23ed2bdgwr0" path="res://scenes/prefabs/wisp_manager.gd" id="2_56dyf"]
 [ext_resource type="Texture2D" uid="uid://bejfsib622bj1" path="res://assets/character_sprites/Character_Scared.png" id="2_jybep"]
 [ext_resource type="Texture2D" uid="uid://35ipfsdv82yc" path="res://assets/character_sprites/Character_Attack.png" id="2_oqq3r"]
-[ext_resource type="Texture2D" uid="uid://76cgge43oxiq" path="res://assets/temp_testing/stick man guy 16x16.png" id="2_tou0u"]
 [ext_resource type="Texture2D" uid="uid://x8hv0761f0tn" path="res://assets/character_sprites/Character_Idle.png" id="3_50rl7"]
-[ext_resource type="Texture2D" uid="uid://df4i7mckmvvxw" path="res://assets/temp_testing/crosshair 16x16.png" id="3_n0leu"]
 [ext_resource type="Script" uid="uid://xh4mf8ifb6xb" path="res://scenes/prefabs/player_anim_sprite.gd" id="5_6v0jn"]
 [ext_resource type="Texture2D" uid="uid://621w4lkqn12m" path="res://assets/character_sprites/Character_Walk.png" id="6_6o77n"]
 
@@ -491,22 +489,11 @@ position = Vector2(-5.6252, -8.93669)
 scale = Vector2(0.025, 0.025)
 frame_progress = 0.638316
 
-[node name="PlayerSprite" type="Sprite2D" parent="."]
-visible = false
-texture = ExtResource("2_tou0u")
-
 [node name="TileCheckerRaycast" type="RayCast2D" parent="."]
 z_index = -1
 target_position = Vector2(0, -16)
 collision_mask = 30
 collide_with_areas = true
-
-[node name="DebugTileFinder" type="Sprite2D" parent="."]
-visible = false
-self_modulate = Color(1, 1, 1, 0.270588)
-z_index = -1
-scale = Vector2(32, 32)
-texture = ExtResource("3_n0leu")
 
 [connection signal="anim_attack" from="." to="PlayerAnimSprite" method="_on_player_anim_attack"]
 [connection signal="anim_died" from="." to="PlayerAnimSprite" method="_on_player_anim_died"]
