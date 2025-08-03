@@ -1,4 +1,7 @@
-[gd_scene format=3 uid="uid://bokggrvrn1d5n"]
+[gd_scene load_steps=3 format=3 uid="uid://bokggrvrn1d5n"]
+
+[ext_resource type="Script" uid="uid://beqwe8yh0qbpu" path="res://scenes/menus/main_menu.gd" id="1_xqga4"]
+[ext_resource type="Texture2D" uid="uid://div1sprplj6si" path="res://assets/menu_elements/instruction sheet.png" id="2_ovrgc"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -7,3 +10,34 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_xqga4")
+
+[node name="HomePage" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Instruction Screen" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="InstructionSheet" type="TextureRect" parent="Instruction Screen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_ovrgc")
+
+[node name="TextureButton" type="TextureButton" parent="Instruction Screen"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0

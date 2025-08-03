@@ -1,6 +1,8 @@
 class_name Player
 extends Node2D
 
+const MAIN_MENU_SCENE = preload("res://scenes/menus/main_menu.tscn")
+
 const TILE_SIZE := 512
 const RESPAWN_TILE := Vector2i(-1,-1)
 
@@ -37,7 +39,7 @@ signal audio_totem_activate
 #endregion
 
 #region Player Metrics
-var movement_speed := 30
+var movement_speed := 15
 var courage_remaining:float = 0.0
 var most_wisps_this_run := 3
 var recent_blackout:=false
@@ -81,7 +83,8 @@ func _process(delta: float) -> void:
 		return
 	
 	if(Input.is_action_just_pressed("debug_activate")):
-		on_blackout()
+		#get_tree().change_scene_to_packed(MAIN_MENU_SCENE)
+		print("No Cheating!")
 		
 		
 	if(!lost_combat):
@@ -168,10 +171,10 @@ func try_move(direction:Vector2):
 			var g = next_tile_check.get_collider() as ExitGate
 			if(g.is_open):
 				print("You made it out good job.")
+				get_tree().change_scene_to_packed(MAIN_MENU_SCENE)
 			else:
 				anim_return_to_idle.emit()
 				return
-			## TODO Scene Transition!
 		else: # The only other thing it could possible be colliding with is an obstacle
 			anim_return_to_idle.emit()
 			return
