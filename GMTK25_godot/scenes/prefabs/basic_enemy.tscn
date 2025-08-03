@@ -1,74 +1,13 @@
-[gd_scene load_steps=18 format=3 uid="uid://8vdab81hfvav"]
+[gd_scene load_steps=11 format=3 uid="uid://8vdab81hfvav"]
 
 [ext_resource type="Texture2D" uid="uid://bdvc5senfau6h" path="res://assets/temp_testing/evil stick man guy 16x16.png" id="1_23aqp"]
 [ext_resource type="Script" uid="uid://c3we0e5aevr0m" path="res://scenes/prefabs/basic_enemy.gd" id="1_qnmws"]
-[ext_resource type="Texture2D" uid="uid://c81hp5463kr66" path="res://assets/character_sprites/Shadow_Monster_Animations.png" id="3_vxteb"]
+[ext_resource type="SpriteFrames" uid="uid://bns3ps1devf60" path="res://assets/textures/ghost_enemy_frames.tres" id="3_vx4am"]
 [ext_resource type="Texture2D" uid="uid://yv3e3c2i6asm" path="res://assets/character_sprites/Skull.png" id="4_vx4am"]
+[ext_resource type="AudioStream" uid="uid://1pe1ic82c5k1" path="res://assets/sounds/Shadow Monster.mp3" id="5_spjj1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qnmws"]
 size = Vector2(512, 512)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vx4am"]
-atlas = ExtResource("3_vxteb")
-region = Rect2(1024, 512, 512, 512)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_gfiqo"]
-atlas = ExtResource("3_vxteb")
-region = Rect2(1536, 512, 512, 512)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8oie3"]
-atlas = ExtResource("3_vxteb")
-region = Rect2(2048, 512, 512, 512)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_spjj1"]
-atlas = ExtResource("3_vxteb")
-region = Rect2(1536, 512, 512, 512)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6fmt6"]
-atlas = ExtResource("3_vxteb")
-region = Rect2(1024, 512, 512, 512)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vxteb"]
-atlas = ExtResource("3_vxteb")
-region = Rect2(1024, 512, 512, 512)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vr2se"]
-atlas = ExtResource("3_vxteb")
-region = Rect2(0, 512, 512, 512)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_vr2se"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vx4am")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_gfiqo")
-}, {
-"duration": 1.6,
-"texture": SubResource("AtlasTexture_8oie3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_spjj1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6fmt6")
-}],
-"loop": false,
-"name": &"Attack",
-"speed": 7.0
-}, {
-"frames": [{
-"duration": 1.5,
-"texture": SubResource("AtlasTexture_vxteb")
-}, {
-"duration": 1.41,
-"texture": SubResource("AtlasTexture_vr2se")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 2.0
-}]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mtgd2"]
 atlas = ExtResource("4_vx4am")
@@ -113,29 +52,32 @@ visible = false
 texture = ExtResource("1_23aqp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_vr2se")
+sprite_frames = ExtResource("3_vx4am")
 animation = &"Attack"
 autoplay = "idle"
 frame = 4
 frame_progress = 1.0
 
 [node name="SkullEmoji" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -265)
+position = Vector2(-0.00579834, -189.09)
 scale = Vector2(1.84724, 1.84443)
 sprite_frames = SubResource("SpriteFrames_xj8rs")
 autoplay = "default"
 frame_progress = 0.64901
 
 [node name="SkullEmoji2" type="AnimatedSprite2D" parent="."]
-position = Vector2(174, -211)
+position = Vector2(173.994, -135.09)
 scale = Vector2(1.84724, 1.84443)
 sprite_frames = SubResource("SpriteFrames_xj8rs")
 autoplay = "default"
 frame_progress = 0.204678
 
 [node name="SkullEmoji3" type="AnimatedSprite2D" parent="."]
-position = Vector2(-142, -189)
+position = Vector2(-142.006, -113.09)
 scale = Vector2(1.84724, 1.84443)
 sprite_frames = SubResource("SpriteFrames_xj8rs")
 autoplay = "default"
 frame_progress = 0.824851
+
+[node name="AttackSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_spjj1")

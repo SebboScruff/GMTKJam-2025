@@ -8,6 +8,7 @@ extends Area2D
 @export var map_manager:FogManager
 @export var tilemap:TileMapLayer
 @onready var anim_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var attack_sfx: AudioStreamPlayer2D = $AttackSFX
 
 
 
@@ -36,6 +37,7 @@ func try_find_player(_current_player_tile:Vector2i) -> void:
 		if(player.get_current_tile() == t):
 			player.on_get_attacked(fear_level)
 			anim_sprite.play("Attack")
+			attack_sfx.play()
 			# Round player courage up to get the number of wisps that they have. 
 			
 			return # Player has been located, don't need to search remaining neighbour tiles.

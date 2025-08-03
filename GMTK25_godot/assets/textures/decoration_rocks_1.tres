@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://c3qxokjd6chmc"]
+
+[ext_resource type="Texture2D" uid="uid://c4gmev1hykjui" path="res://assets/decoration_sprites/Foliage_Extras.png" id="1_amri2"]
+
+[resource]
+atlas = ExtResource("1_amri2")
+region = Rect2(512, 0, 512, 512)

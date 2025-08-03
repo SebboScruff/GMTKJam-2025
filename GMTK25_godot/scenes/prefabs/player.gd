@@ -2,7 +2,7 @@ class_name Player
 extends Node2D
 
 const TILE_SIZE := 512
-const RESPAWN_TILE := Vector2i(-1,0)
+const RESPAWN_TILE := Vector2i(-1,-1)
 
 #region External Object References
 @export var gm:GameManager
@@ -28,10 +28,18 @@ signal anim_is_too_scared
 signal anim_died
 signal anim_attack(dir:int)
 #endregion
+#region Audio Signals
+signal audio_walk
+signal audio_blackout_start
+signal audio_blackout_end
+signal audio_attack
+signal audio_totem_activate
+#endregion
 
 #region Player Metrics
 var movement_speed := 30
 var courage_remaining:float = 0.0
+var most_wisps_this_run := 3
 var recent_blackout:=false
 # The tiles discovered during an expedition. Tiles in this array can be lost for good.
 var tiles_visited:Array = []
@@ -125,6 +133,8 @@ func _physics_process(delta: float) -> void:
 	player_anim_sprite.global_position = player_anim_sprite.global_position.move_toward(global_position, movement_speed)
 	
 func try_move(direction:Vector2):
+	if(recent_blackout && courage_remaining <= 0):
+		on_die()
 	## First, change the direction of the raycast so it's facing in the direction
 	## that the player is about to move in.
 	next_tile_check.target_position = direction * TILE_SIZE
@@ -150,6 +160,7 @@ func try_move(direction:Vector2):
 			var target_pickup = next_tile_check.get_collider() as CourageBoost
 			target_pickup.on_pickup(self)
 		elif(next_tile_check.get_collider() is Totem):
+			audio_totem_activate.emit()
 			var target_totem = next_tile_check.get_collider() as Totem
 			target_totem.on_activate(self)
 			gate.check_player_totem_count(self)
@@ -175,6 +186,7 @@ func try_move(direction:Vector2):
 	if(target_tile_data.get_custom_data("SafeZone") == true):
 		on_return_to_village()
 		anim_is_moving.emit(anim_direction)
+		audio_walk.emit()
 		move_to_tile(current_tile, target_tile)
 		return
 		
@@ -189,6 +201,7 @@ func try_move(direction:Vector2):
 	if(is_next_tile_unvisited):
 		if(courage_remaining > 0):
 			anim_is_moving.emit(anim_direction)
+			audio_walk.emit()
 			move_to_tile(current_tile, target_tile)
 			adjust_courage(-0.2)
 		else: ## tile is unvisited and there's no courage left
@@ -198,6 +211,7 @@ func try_move(direction:Vector2):
 			return
 	else: # Next tile has already been visited
 		anim_is_moving.emit(anim_direction)
+		audio_walk.emit()
 		move_to_tile(current_tile, target_tile)
 
 func resolve_combat(target_enemy:Enemy, _current_tile:Vector2, _target_tile:Vector2) -> void:
@@ -212,12 +226,14 @@ func resolve_combat(target_enemy:Enemy, _current_tile:Vector2, _target_tile:Vect
 	elif(wisp_count > target_enemy.fear_level):
 		print("Player is very brave. Enemy killed without any courage loss")
 		anim_attack.emit(anim_direction)
+		audio_attack.emit()
 		target_enemy.on_death()
 		move_to_tile(_current_tile, _target_tile)
 		return
 	elif(wisp_count == target_enemy.fear_level):
 		print("Player is kinda brave. Enemy killed with courage loss")
 		anim_attack.emit(anim_direction)
+		audio_attack.emit()
 		target_enemy.on_death()
 		move_to_tile(_current_tile, _target_tile)
 		remove_wisps(1)
@@ -248,6 +264,10 @@ func add_wisps(_delta:int) -> void:
 	
 	if(target_num_wisps > 5):
 		target_num_wisps = 5
+	
+	if(target_num_wisps > most_wisps_this_run):
+		most_wisps_this_run = target_num_wisps
+	
 	var courage_to_add = target_num_wisps - courage_remaining
 	courage_remaining += courage_to_add
 	wisp_manager.update_wisp_visuals()
@@ -255,7 +275,7 @@ func add_wisps(_delta:int) -> void:
 func remove_wisps(_delta:int) -> void:
 	var num_current_wisps = ceil(courage_remaining)
 	var target_num_wisps = num_current_wisps - _delta
-	if(target_num_wisps < 0):
+	if(target_num_wisps <= 0):
 		courage_remaining = 0
 		return
 	
@@ -282,8 +302,8 @@ func on_get_attacked(_fear_level:int):
 	elif (player_wisp_count == _fear_level):
 		## player loses the remainder of their smallest 1 Wisp, but does not black out.
 		## Effectively truncates the decimal off the courage remaining stat.
-		print("Player has equal courage. Losing 1 Wisp and not blacking out.")
-		remove_wisps(1)
+		print("Player has equal courage. Blacking out but not losing any Courage.")
+		on_blackout()
 		return
 	elif(player_wisp_count < _fear_level):
 		## Player loses 1 Courage AND blacks out.
@@ -294,6 +314,7 @@ func on_get_attacked(_fear_level:int):
 
 func on_blackout() -> void:
 	print("Player blacked out!")
+	audio_blackout_start.emit()
 	map_manager.reset_fog_completely()
 	recent_blackout = true
 	
@@ -334,6 +355,7 @@ func on_die() -> void:
 
 func on_return_to_village() -> void:
 	print("Player returned to village!")
+	audio_blackout_end.emit()
 	if(recent_blackout == true):
 		recent_blackout = false
 		# Re-add previously discovered tiles to the tiles visited array
@@ -344,7 +366,7 @@ func on_return_to_village() -> void:
 		# Re-remove the fog from around those tiles.
 		
 	if(courage_remaining < 3):
-		courage_remaining = 3.0
+		courage_remaining = most_wisps_this_run
 		wisp_manager.update_wisp_visuals()
 	
 	for t in tiles_visited:

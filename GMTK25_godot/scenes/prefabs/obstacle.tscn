@@ -1,13 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dq3muqnpi8tay"]
+[gd_scene load_steps=3 format=3 uid="uid://dq3muqnpi8tay"]
 
-[ext_resource type="Texture2D" uid="uid://kligf8xubqw5" path="res://assets/decoration_sprites/Environmental_Assets_01.png" id="1_88d1b"]
+[ext_resource type="Texture2D" uid="uid://bm0mhqqvqpu85" path="res://assets/textures/obstacle_singletree.tres" id="1_88d1b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1b3ag"]
 size = Vector2(512, 512)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1b3ag"]
-atlas = ExtResource("1_88d1b")
-region = Rect2(1536, 1374.15, 512, 673.846)
 
 [node name="Obstacle" type="Area2D"]
 z_index = 2
@@ -18,4 +14,4 @@ shape = SubResource("RectangleShape2D_1b3ag")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -81)
-texture = SubResource("AtlasTexture_1b3ag")
+texture = ExtResource("1_88d1b")
