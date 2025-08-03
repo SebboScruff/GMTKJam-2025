@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="GMTK2025"
-run/main_scene="uid://blssh5cmsi1qk"
+run/main_scene="uid://bokggrvrn1d5n"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -71,3 +71,4 @@ menu_go_back={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+environment/defaults/default_clear_color=Color(0.0705882, 0.0745098, 0.0823529, 1)

@@ -861,7 +861,7 @@ scale = Vector2(-1, 1)
 texture = ExtResource("20_xynrh")
 
 [node name="House" parent="Map_Decorations_Master" instance=ExtResource("6_bks8w")]
-z_index = 6
+z_index = 5
 position = Vector2(-256, -768)
 
 [node name="Sprite2D" parent="Map_Decorations_Master/House" index="1"]

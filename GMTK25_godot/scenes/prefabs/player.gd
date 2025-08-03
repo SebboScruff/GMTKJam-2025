@@ -1,10 +1,9 @@
 class_name Player
 extends Node2D
 
-const MAIN_MENU_SCENE = preload("res://scenes/menus/main_menu.tscn")
-
 const TILE_SIZE := 512
 const RESPAWN_TILE := Vector2i(-1,-1)
+const STARTING_COURAGE := 1.0
 
 #region External Object References
 @export var gm:GameManager
@@ -41,7 +40,7 @@ signal audio_totem_activate
 #region Player Metrics
 var movement_speed := 15
 var courage_remaining:float = 0.0
-var most_wisps_this_run := 3
+var most_wisps_this_run := STARTING_COURAGE
 var recent_blackout:=false
 # The tiles discovered during an expedition. Tiles in this array can be lost for good.
 var tiles_visited:Array = [Vector2i(-1,0),Vector2i(0,-1),Vector2i(-1,-1),Vector2i(0,0)]
@@ -66,11 +65,11 @@ func _ready() -> void:
 	if(tilemap == null):
 		print("No Tilemap Assigned to player! Movement will not work.")
 	
-	# Emit this signal once at the start of the game to make sure the Fog updates immediately
-	#on_player_turn_ended.emit(tilemap.local_to_map(global_position)) 
-	adjust_courage(3.0)
+	
+	adjust_courage(STARTING_COURAGE)
 	#tiles_visited.append(get_current_tile())
 	
+	# Erase the fog around the village tiles at the start of hte game
 	for t in tiles_visited:
 		map_manager.update_fog(t)
 	print("Player started on Tile (%d,%d)"%[get_current_tile().x, get_current_tile().y])
@@ -79,14 +78,16 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	#if(gm.can_player_act == false):
-		#return
 	if(is_dead):
 		anim_died.emit()
 		return
+	if(courage_remaining <=0 && recent_blackout):
+		anim_died.emit()
+		on_die()
+		return
 	
 	if(Input.is_action_just_pressed("debug_activate")):
-		#get_tree().change_scene_to_packed(MAIN_MENU_SCENE)
+		on_blackout()
 		print("No Cheating!")
 		
 		
@@ -117,8 +118,14 @@ func _process(delta: float) -> void:
 			lost_combat = false
 
 func _physics_process(delta: float) -> void:
+	if(recent_blackout && courage_remaining <= 0.0):
+		anim_died.emit()
+		on_die()
+		return
+	
 	if(is_moving == false):
 		return
+	
 		
 	if(global_position == player_anim_sprite.global_position):
 		is_moving = false
@@ -141,6 +148,8 @@ func _physics_process(delta: float) -> void:
 func try_move(direction:Vector2):
 	if(recent_blackout && courage_remaining <= 0):
 		on_die()
+		return
+	
 	## First, change the direction of the raycast so it's facing in the direction
 	## that the player is about to move in.
 	next_tile_check.target_position = direction * TILE_SIZE
@@ -174,7 +183,7 @@ func try_move(direction:Vector2):
 			var g = next_tile_check.get_collider() as ExitGate
 			if(g.is_open):
 				print("You made it out good job.")
-				get_tree().change_scene_to_packed(MAIN_MENU_SCENE)
+				get_tree().change_scene_to_file("res://scenes/menus/main_menu.tscn")
 			else:
 				anim_return_to_idle.emit()
 				return
@@ -283,6 +292,9 @@ func remove_wisps(_delta:int) -> void:
 	var target_num_wisps = num_current_wisps - _delta
 	if(target_num_wisps <= 0):
 		courage_remaining = 0
+	wisp_manager.update_wisp_visuals()
+	if(courage_remaining <= 0):
+		on_die()
 		return
 	
 	var courage_to_remove = courage_remaining - target_num_wisps
@@ -325,7 +337,9 @@ func on_blackout() -> void:
 	recent_blackout = true
 	
 func on_die() -> void:
+	player_anim_sprite.play("die")
 	is_dead = true
+	
 	print("Player died!")
 	# Play and wait for Death Animation if we have one
 	## Stall here if the animation is still playing
@@ -337,8 +351,9 @@ func on_die() -> void:
 	tiles_visited.clear()
 	# respawn player inside village
 	global_position = tilemap.map_to_local(RESPAWN_TILE)
+	player_anim_sprite.global_position = tilemap.map_to_local(RESPAWN_TILE)
 	# Reset courage back to 3
-	courage_remaining = 3
+	courage_remaining = STARTING_COURAGE
 	wisp_manager.update_wisp_visuals()
 	
 	## MAP RESET:
