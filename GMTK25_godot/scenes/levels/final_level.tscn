@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=4 uid="uid://blssh5cmsi1qk"]
+[gd_scene load_steps=37 format=4 uid="uid://blssh5cmsi1qk"]
 
 [ext_resource type="Script" uid="uid://bcfsa5i01f578" path="res://scenes/prefabs/map.gd" id="1_61xx6"]
 [ext_resource type="TileSet" uid="uid://dwh345fy5jv18" path="res://assets/Grass_tileset_allfoglayers.tres" id="1_lekuc"]
@@ -7,9 +7,13 @@
 [ext_resource type="TileSet" uid="uid://cww51own2at7u" path="res://assets/Fog_Tileset.tres" id="3_vmyuh"]
 [ext_resource type="Texture2D" uid="uid://dtulor4u80dpr" path="res://assets/Village/Village_House.png" id="6_481ra"]
 [ext_resource type="PackedScene" uid="uid://dq3muqnpi8tay" path="res://scenes/prefabs/obstacle.tscn" id="6_bks8w"]
+[ext_resource type="Texture2D" uid="uid://dg05gbxdn3ikv" path="res://assets/textures/obstacle_grove_R.tres" id="6_cg8kp"]
+[ext_resource type="Texture2D" uid="uid://b04n2s66to5b0" path="res://assets/textures/obstacle_log.tres" id="6_df8f2"]
 [ext_resource type="PackedScene" uid="uid://b0qlqe4ndvth4" path="res://scenes/prefabs/item_respawner.tscn" id="6_e446s"]
+[ext_resource type="Texture2D" uid="uid://cut3pmyku5b4p" path="res://assets/textures/obstacle_grove_M.tres" id="7_df8f2"]
 [ext_resource type="PackedScene" uid="uid://d2mna074yu4se" path="res://scenes/prefabs/totem.tscn" id="7_ifx55"]
 [ext_resource type="PackedScene" uid="uid://8vdab81hfvav" path="res://scenes/prefabs/basic_enemy.tscn" id="7_jwk10"]
+[ext_resource type="Texture2D" uid="uid://b347ain66fw4j" path="res://assets/textures/obstacle_grove_L.tres" id="8_crova"]
 [ext_resource type="Texture2D" uid="uid://yv3e3c2i6asm" path="res://assets/character_sprites/Skull.png" id="8_kiu27"]
 [ext_resource type="AudioStream" uid="uid://djbaqwuhkfe02" path="res://assets/sounds/Bone Monster.wav" id="9_qahkp"]
 [ext_resource type="PackedScene" uid="uid://b0rrkpwk2vh10" path="res://scenes/prefabs/courage_boost.tscn" id="9_rqhej"]
@@ -116,6 +120,7 @@ script = ExtResource("3_bks8w")
 [node name="Map_Decorations_Master" type="Node2D" parent="."]
 
 [node name="Obstacles" type="Node2D" parent="Map_Decorations_Master"]
+z_index = 4
 
 [node name="Obstacle" parent="Map_Decorations_Master/Obstacles" instance=ExtResource("6_bks8w")]
 position = Vector2(-3840, -3840)
@@ -135,17 +140,30 @@ position = Vector2(-2304, -2816)
 [node name="Obstacle6" parent="Map_Decorations_Master/Obstacles" instance=ExtResource("6_bks8w")]
 position = Vector2(768, -3840)
 
+[node name="Sprite2D" parent="Map_Decorations_Master/Obstacles/Obstacle6" index="1"]
+position = Vector2(0, 0)
+texture = ExtResource("6_df8f2")
+
 [node name="Obstacle7" parent="Map_Decorations_Master/Obstacles" instance=ExtResource("6_bks8w")]
 position = Vector2(1280, -3840)
 
 [node name="Obstacle8" parent="Map_Decorations_Master/Obstacles" instance=ExtResource("6_bks8w")]
 position = Vector2(768, -3328)
 
+[node name="Sprite2D" parent="Map_Decorations_Master/Obstacles/Obstacle8" index="1"]
+texture = ExtResource("6_cg8kp")
+
 [node name="Obstacle9" parent="Map_Decorations_Master/Obstacles" instance=ExtResource("6_bks8w")]
 position = Vector2(-256, -3328)
 
+[node name="Sprite2D" parent="Map_Decorations_Master/Obstacles/Obstacle9" index="1"]
+texture = ExtResource("8_crova")
+
 [node name="Obstacle10" parent="Map_Decorations_Master/Obstacles" instance=ExtResource("6_bks8w")]
 position = Vector2(256, -3328)
+
+[node name="Sprite2D" parent="Map_Decorations_Master/Obstacles/Obstacle10" index="1"]
+texture = ExtResource("7_df8f2")
 
 [node name="Obstacle11" parent="Map_Decorations_Master/Obstacles" instance=ExtResource("6_bks8w")]
 position = Vector2(-2304, -2304)
@@ -171,29 +189,57 @@ position = Vector2(2816, -3328)
 [node name="Obstacle18" parent="Map_Decorations_Master/Obstacles" instance=ExtResource("6_bks8w")]
 position = Vector2(2816, -2816)
 
+[node name="Sprite2D" parent="Map_Decorations_Master/Obstacles/Obstacle18" index="1"]
+position = Vector2(0, 0)
+texture = ExtResource("6_df8f2")
+
 [node name="Obstacle19" parent="Map_Decorations_Master/Obstacles" instance=ExtResource("6_bks8w")]
 position = Vector2(2816, -2304)
+
+[node name="Sprite2D" parent="Map_Decorations_Master/Obstacles/Obstacle19" index="1"]
+texture = ExtResource("6_cg8kp")
 
 [node name="Obstacle20" parent="Map_Decorations_Master/Obstacles" instance=ExtResource("6_bks8w")]
 position = Vector2(2304, -2304)
 
+[node name="Sprite2D" parent="Map_Decorations_Master/Obstacles/Obstacle20" index="1"]
+texture = ExtResource("7_df8f2")
+
 [node name="Obstacle21" parent="Map_Decorations_Master/Obstacles" instance=ExtResource("6_bks8w")]
 position = Vector2(1792, -2304)
+
+[node name="Sprite2D" parent="Map_Decorations_Master/Obstacles/Obstacle21" index="1"]
+texture = ExtResource("7_df8f2")
 
 [node name="Obstacle22" parent="Map_Decorations_Master/Obstacles" instance=ExtResource("6_bks8w")]
 position = Vector2(768, -2304)
 
+[node name="Sprite2D" parent="Map_Decorations_Master/Obstacles/Obstacle22" index="1"]
+texture = ExtResource("7_df8f2")
+
 [node name="Obstacle23" parent="Map_Decorations_Master/Obstacles" instance=ExtResource("6_bks8w")]
 position = Vector2(1280, -2304)
+
+[node name="Sprite2D" parent="Map_Decorations_Master/Obstacles/Obstacle23" index="1"]
+texture = ExtResource("7_df8f2")
 
 [node name="Obstacle24" parent="Map_Decorations_Master/Obstacles" instance=ExtResource("6_bks8w")]
 position = Vector2(256, -2304)
 
+[node name="Sprite2D" parent="Map_Decorations_Master/Obstacles/Obstacle24" index="1"]
+texture = ExtResource("7_df8f2")
+
 [node name="Obstacle25" parent="Map_Decorations_Master/Obstacles" instance=ExtResource("6_bks8w")]
 position = Vector2(-256, -2304)
 
+[node name="Sprite2D" parent="Map_Decorations_Master/Obstacles/Obstacle25" index="1"]
+texture = ExtResource("7_df8f2")
+
 [node name="Obstacle26" parent="Map_Decorations_Master/Obstacles" instance=ExtResource("6_bks8w")]
 position = Vector2(-768, -2304)
+
+[node name="Sprite2D" parent="Map_Decorations_Master/Obstacles/Obstacle26" index="1"]
+texture = ExtResource("8_crova")
 
 [node name="Obstacle27" parent="Map_Decorations_Master/Obstacles" instance=ExtResource("6_bks8w")]
 position = Vector2(3840, -2304)
@@ -216,6 +262,11 @@ position = Vector2(2816, 256)
 [node name="Obstacle33" parent="Map_Decorations_Master/Obstacles" instance=ExtResource("6_bks8w")]
 position = Vector2(3328, 1792)
 
+[node name="Sprite2D" parent="Map_Decorations_Master/Obstacles/Obstacle33" index="1"]
+position = Vector2(0, 0)
+scale = Vector2(-1, 1)
+texture = ExtResource("6_df8f2")
+
 [node name="Obstacle34" parent="Map_Decorations_Master/Obstacles" instance=ExtResource("6_bks8w")]
 position = Vector2(3328, 2816)
 
@@ -224,6 +275,10 @@ position = Vector2(2304, 1792)
 
 [node name="Obstacle36" parent="Map_Decorations_Master/Obstacles" instance=ExtResource("6_bks8w")]
 position = Vector2(2304, 2816)
+
+[node name="Sprite2D" parent="Map_Decorations_Master/Obstacles/Obstacle36" index="1"]
+position = Vector2(0, 0)
+texture = ExtResource("6_df8f2")
 
 [node name="Obstacle37" parent="Map_Decorations_Master/Obstacles" instance=ExtResource("6_bks8w")]
 position = Vector2(-256, -1280)
@@ -267,17 +322,34 @@ position = Vector2(-768, 2304)
 [node name="Obstacle53" parent="Map_Decorations_Master/Obstacles" instance=ExtResource("6_bks8w")]
 position = Vector2(-768, 3328)
 
+[node name="Sprite2D" parent="Map_Decorations_Master/Obstacles/Obstacle53" index="1"]
+texture = ExtResource("6_cg8kp")
+
 [node name="Obstacle54" parent="Map_Decorations_Master/Obstacles" instance=ExtResource("6_bks8w")]
 position = Vector2(-1280, 3328)
+
+[node name="Sprite2D" parent="Map_Decorations_Master/Obstacles/Obstacle54" index="1"]
+texture = ExtResource("7_df8f2")
 
 [node name="Obstacle55" parent="Map_Decorations_Master/Obstacles" instance=ExtResource("6_bks8w")]
 position = Vector2(-1792, 3328)
 
+[node name="Sprite2D" parent="Map_Decorations_Master/Obstacles/Obstacle55" index="1"]
+texture = ExtResource("7_df8f2")
+
 [node name="Obstacle56" parent="Map_Decorations_Master/Obstacles" instance=ExtResource("6_bks8w")]
 position = Vector2(-2304, 3328)
 
+[node name="Sprite2D" parent="Map_Decorations_Master/Obstacles/Obstacle56" index="1"]
+texture = ExtResource("7_df8f2")
+
 [node name="Obstacle59" parent="Map_Decorations_Master/Obstacles" instance=ExtResource("6_bks8w")]
 position = Vector2(-2816, 2304)
+
+[node name="Sprite2D" parent="Map_Decorations_Master/Obstacles/Obstacle59" index="1"]
+position = Vector2(0, 0)
+scale = Vector2(-1, 1)
+texture = ExtResource("6_df8f2")
 
 [node name="Obstacle60" parent="Map_Decorations_Master/Obstacles" instance=ExtResource("6_bks8w")]
 position = Vector2(-2816, 1792)
@@ -291,8 +363,14 @@ position = Vector2(-3840, 768)
 [node name="Obstacle57" parent="Map_Decorations_Master/Obstacles" instance=ExtResource("6_bks8w")]
 position = Vector2(-2816, 3328)
 
+[node name="Sprite2D" parent="Map_Decorations_Master/Obstacles/Obstacle57" index="1"]
+texture = ExtResource("7_df8f2")
+
 [node name="Obstacle58" parent="Map_Decorations_Master/Obstacles" instance=ExtResource("6_bks8w")]
 position = Vector2(-3328, 3328)
+
+[node name="Sprite2D" parent="Map_Decorations_Master/Obstacles/Obstacle58" index="1"]
+texture = ExtResource("8_crova")
 
 [node name="Obstacle48" parent="Map_Decorations_Master/Obstacles" instance=ExtResource("6_bks8w")]
 position = Vector2(1280, 2304)
@@ -549,14 +627,20 @@ visible = false
 [node name="PickupRespawner" parent="Map_Decorations_Master/Pickups" instance=ExtResource("6_e446s")]
 
 [node name="CourageBoost" parent="Map_Decorations_Master/Pickups/PickupRespawner" instance=ExtResource("9_rqhej")]
+z_index = 4
+z_as_relative = false
 position = Vector2(-2816, 768)
 courage_increase = 1
 
 [node name="CourageBoost2" parent="Map_Decorations_Master/Pickups/PickupRespawner" instance=ExtResource("9_rqhej")]
+z_index = 4
+z_as_relative = false
 position = Vector2(-3840, 2816)
 courage_increase = 1
 
 [node name="CourageBoost3" parent="Map_Decorations_Master/Pickups/PickupRespawner" instance=ExtResource("9_rqhej")]
+z_index = 4
+z_as_relative = false
 position = Vector2(3840, -1280)
 courage_increase = 1
 
@@ -564,6 +648,8 @@ courage_increase = 1
 texture = ExtResource("12_qcps6")
 
 [node name="CourageBoost4" parent="Map_Decorations_Master/Pickups/PickupRespawner" instance=ExtResource("9_rqhej")]
+z_index = 4
+z_as_relative = false
 position = Vector2(3328, 768)
 courage_increase = 1
 
@@ -571,6 +657,8 @@ courage_increase = 1
 texture = ExtResource("13_qahkp")
 
 [node name="CourageBoost5" parent="Map_Decorations_Master/Pickups/PickupRespawner" instance=ExtResource("9_rqhej")]
+z_index = 4
+z_as_relative = false
 position = Vector2(-3328, -3328)
 courage_increase = 1
 
@@ -736,6 +824,34 @@ texture = ExtResource("22_u7jlw")
 position = Vector2(256, 1536)
 texture = ExtResource("19_vpf58")
 
+[node name="TileDeco17_LongGrass2" type="Sprite2D" parent="Map_Decorations_Master/Decorations"]
+position = Vector2(768, 1536)
+texture = ExtResource("19_vpf58")
+
+[node name="TileDeco17_LongGrass3" type="Sprite2D" parent="Map_Decorations_Master/Decorations"]
+position = Vector2(768, 2048)
+texture = ExtResource("19_vpf58")
+
+[node name="TileDeco17_LongGrass4" type="Sprite2D" parent="Map_Decorations_Master/Decorations"]
+position = Vector2(256, 2048)
+texture = ExtResource("19_vpf58")
+
+[node name="TileDeco17_LongGrass5" type="Sprite2D" parent="Map_Decorations_Master/Decorations"]
+position = Vector2(-3840, -3584)
+texture = ExtResource("19_vpf58")
+
+[node name="TileDeco17_LongGrass6" type="Sprite2D" parent="Map_Decorations_Master/Decorations"]
+position = Vector2(-3840, -3072)
+texture = ExtResource("19_vpf58")
+
+[node name="TileDeco17_LongGrass7" type="Sprite2D" parent="Map_Decorations_Master/Decorations"]
+position = Vector2(2816, 1536)
+texture = ExtResource("19_vpf58")
+
+[node name="TileDeco17_LongGrass8" type="Sprite2D" parent="Map_Decorations_Master/Decorations"]
+position = Vector2(2816, 2560)
+texture = ExtResource("19_vpf58")
+
 [node name="TileDeco17_Lantern1" type="Sprite2D" parent="Map_Decorations_Master/Decorations"]
 z_index = 2
 position = Vector2(-365, -692)
@@ -776,6 +892,28 @@ gate = NodePath("../Map_Decorations_Master/Gate")
 [node name="MusicSFXManager" parent="Player" node_paths=PackedStringArray("player") instance=ExtResource("28_df8f2")]
 player = NodePath("..")
 
+[editable path="Map_Decorations_Master/Obstacles/Obstacle6"]
+[editable path="Map_Decorations_Master/Obstacles/Obstacle8"]
+[editable path="Map_Decorations_Master/Obstacles/Obstacle9"]
+[editable path="Map_Decorations_Master/Obstacles/Obstacle10"]
+[editable path="Map_Decorations_Master/Obstacles/Obstacle18"]
+[editable path="Map_Decorations_Master/Obstacles/Obstacle19"]
+[editable path="Map_Decorations_Master/Obstacles/Obstacle20"]
+[editable path="Map_Decorations_Master/Obstacles/Obstacle21"]
+[editable path="Map_Decorations_Master/Obstacles/Obstacle22"]
+[editable path="Map_Decorations_Master/Obstacles/Obstacle23"]
+[editable path="Map_Decorations_Master/Obstacles/Obstacle24"]
+[editable path="Map_Decorations_Master/Obstacles/Obstacle25"]
+[editable path="Map_Decorations_Master/Obstacles/Obstacle26"]
+[editable path="Map_Decorations_Master/Obstacles/Obstacle33"]
+[editable path="Map_Decorations_Master/Obstacles/Obstacle36"]
+[editable path="Map_Decorations_Master/Obstacles/Obstacle53"]
+[editable path="Map_Decorations_Master/Obstacles/Obstacle54"]
+[editable path="Map_Decorations_Master/Obstacles/Obstacle55"]
+[editable path="Map_Decorations_Master/Obstacles/Obstacle56"]
+[editable path="Map_Decorations_Master/Obstacles/Obstacle59"]
+[editable path="Map_Decorations_Master/Obstacles/Obstacle57"]
+[editable path="Map_Decorations_Master/Obstacles/Obstacle58"]
 [editable path="Map_Decorations_Master/Enemies/Gargoyle_Enemy"]
 [editable path="Map_Decorations_Master/Enemies/Gargoyle_Enemy2"]
 [editable path="Map_Decorations_Master/Enemies/Gargoyle_Enemy3"]
