@@ -6,14 +6,13 @@ const RESPAWN_TILE := Vector2i(-1,-1)
 const STARTING_COURAGE := 1.0
 
 #region External Object References
-@export var gm:GameManager
 @export var map_manager:FogManager
 @export var tilemap:TileMapLayer # This is the fully revealed tilemap, used for determining which tiles can be walked on.
 @export var pickup_respawner:PickupRespawner
 @export var gate:ExitGate
 #endregion
+
 #region Internal Object References
-@onready var player_sprite: Sprite2D = $PlayerSprite
 @onready var player_anim_sprite: AnimatedSprite2D = $PlayerAnimSprite
 @onready var next_tile_check: RayCast2D = $TileCheckerRaycast
 var is_next_tile_occupied:bool = false
@@ -57,8 +56,6 @@ signal on_player_turn_ended(player_tile:Vector2)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	if(gm == null):
-		print("No Game Manager Assigned to Player! This may cause lots of issues.")
 	if(map_manager == null):
 		print("No Map Manager assigned to Player!")
 	tilemap = map_manager.full_reveal_layer

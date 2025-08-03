@@ -1,8 +1,6 @@
 class_name MainMenuController
 extends Control
 
-const LEVEL = preload("res://scenes/levels/final_level.tscn")
-
 @onready var home_page: Control = $HomePage
 @onready var instruction_screen: Control = $"Instruction Screen"
 
@@ -20,12 +18,13 @@ func _on_instr_button_pressed() -> void:
 func _on_quit_button_pressed() -> void:
 	get_tree().root.propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST)
 
+
 func _physics_process(delta: float) -> void:
 	if(Input.is_action_just_pressed("menu_go_back")):
 		show_home_page()
 
 func load_game() -> void:
-	get_tree().change_scene_to_packed(LEVEL)
+	get_tree().change_scene_to_file("res://scenes/levels/final_level.tscn")
 	
 func show_home_page() -> void:
 	home_page.set_visible(true)
