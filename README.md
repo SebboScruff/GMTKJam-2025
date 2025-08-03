@@ -3,7 +3,6 @@
 Team Credits:
 
 Seb Scaife aka shlebben - Programming
-EdgarAF - Programming
 chol - Art
 Veitsi - Art
 ExstaticDev - Art
