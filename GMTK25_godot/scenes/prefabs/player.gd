@@ -44,7 +44,7 @@ var courage_remaining:float = 0.0
 var most_wisps_this_run := 3
 var recent_blackout:=false
 # The tiles discovered during an expedition. Tiles in this array can be lost for good.
-var tiles_visited:Array = []
+var tiles_visited:Array = [Vector2i(-1,0),Vector2i(0,-1),Vector2i(-1,-1),Vector2i(0,0)]
 # Upon returning to the village, tiles are saved in here and cannot be lost on death.
 # The next run will start with all of these still available.
 var tiles_recorded:Array = []
@@ -69,7 +69,10 @@ func _ready() -> void:
 	# Emit this signal once at the start of the game to make sure the Fog updates immediately
 	#on_player_turn_ended.emit(tilemap.local_to_map(global_position)) 
 	adjust_courage(3.0)
-	tiles_visited.append(get_current_tile())
+	#tiles_visited.append(get_current_tile())
+	
+	for t in tiles_visited:
+		map_manager.update_fog(t)
 	print("Player started on Tile (%d,%d)"%[get_current_tile().x, get_current_tile().y])
 	anim_return_to_idle.emit()
 
