@@ -10,6 +10,9 @@ func _ready() -> void:
 	wisps = get_children()
 
 func update_wisp_visuals() -> void:
+	if(player.courage_remaining == 0):
+		for w in wisps:
+			w.set_visible(false)
 	# Convert the player's courage into a number of wisps
 	var num_wisps = ceil(player.courage_remaining)
 	## hide all wisps
